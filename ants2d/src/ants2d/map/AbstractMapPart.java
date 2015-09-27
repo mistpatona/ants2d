@@ -42,7 +42,7 @@ public abstract class AbstractMapPart implements MapPart {
 		return rect.contains(p);
 	}
 
-	public Iterable<MapObject> getNearbyObjects(Point p, double radius) {
+	public List<MapObject> getNearbyObjects(Point p, double radius) {
 		if (rect.containsCircle(p, radius) || isRoot()) {
 			return getOwnNearbyObjects(p, radius);
 		} else {
@@ -51,11 +51,15 @@ public abstract class AbstractMapPart implements MapPart {
 
 	}
 
-	public abstract Iterable<MapObject> getOwnNearbyObjects(Point p, double radius);
+	public abstract List<MapObject> getOwnNearbyObjects(Point p, double radius);
 
 	@Override
 	public void add(MapObject x) {
 		findMap(x.getCoords()).add(x);
+	}
+	
+	public Rectangle getRectangle(){
+		return new Rectangle(rect);
 	}
 
 }

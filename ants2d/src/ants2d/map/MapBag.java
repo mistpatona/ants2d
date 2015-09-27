@@ -14,7 +14,7 @@ public class MapBag extends AbstractMapPart {
 		}
 	}
 
-	public Iterable<MapObject> getOwnNearbyObjects(Point p, double radius) {
+	public List<MapObject> getOwnNearbyObjects(Point p, double radius) {
 		List<MapObject> ans = new ArrayList<MapObject>();
 		for (MapPart m : getChildren()) {
 			for (MapObject mo : m.getOwnNearbyObjects(p, radius)) {

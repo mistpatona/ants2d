@@ -19,7 +19,7 @@ public class MapObjectBag extends AbstractMapPart {
 	}
 
 	@Override
-	public Iterable<MapObject> getOwnNearbyObjects(Point p, double radius) {
+	public List<MapObject> getOwnNearbyObjects(Point p, double radius) {
 		List<MapObject> ans = new ArrayList<MapObject>();
 		for (MapObject x : list) {
 			if (p.distanceTo(x.getCoords()) <= radius)
