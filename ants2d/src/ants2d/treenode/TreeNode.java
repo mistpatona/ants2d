@@ -15,4 +15,6 @@ public interface TreeNode<T> {
 	boolean hasNoChildren();
 	T getOwner();
 	void setOwner(T _owner);
+	//int getNodeDepth();
+	//int getNodeCount();
 }
