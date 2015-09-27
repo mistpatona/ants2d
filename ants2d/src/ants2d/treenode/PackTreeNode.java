@@ -36,5 +36,10 @@ public class PackTreeNode<T> extends AbstractTreeNode<T> {
 		return false;
 	}
 
+	@Override
+	public boolean hasNoChildren() {
+		return children.isEmpty();
+	}
+
 
 }

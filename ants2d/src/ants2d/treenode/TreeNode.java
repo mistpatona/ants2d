@@ -10,6 +10,8 @@ public interface TreeNode<T> {
 	void  removeChild(TreeNode<T> c);
 	void  switchChild(TreeNode<T> _old, TreeNode<T> _new);
 	boolean isRoot();
+	boolean hasChildren();
+	boolean hasNoChildren();
 	T getOwner();
 	void setOwner(T _owner);
 }
