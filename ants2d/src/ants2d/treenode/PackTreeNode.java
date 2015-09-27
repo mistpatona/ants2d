@@ -41,5 +41,12 @@ public class PackTreeNode<T> extends AbstractTreeNode<T> {
 		return children.isEmpty();
 	}
 
+	@Override
+	public TreeNode<T> makeChild() {
+		TreeNode<T> c = new PackTreeNode<T>(this,null);
+		addChild(c);
+		return c;
+	}
+
 
 }

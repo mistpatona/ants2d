@@ -9,6 +9,7 @@ public interface TreeNode<T> {
 	void  addChild(TreeNode<T> c);
 	void  removeChild(TreeNode<T> c);
 	void  switchChild(TreeNode<T> _old, TreeNode<T> _new);
+	TreeNode<T> makeChild();
 	boolean isRoot();
 	boolean hasChildren();
 	boolean hasNoChildren();
