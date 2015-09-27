@@ -35,4 +35,8 @@ public abstract class XY {
 	public abstract boolean isAbs();
 
 	public abstract boolean isOffs();
+	
+	public XY scaleBy(double k) {
+		return create(getX()*k,getY()*k);
+	}
 }
