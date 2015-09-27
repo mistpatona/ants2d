@@ -7,7 +7,7 @@ import ants2d.treenode.TreeNode;
 
 public abstract class AbstractMapPart implements MapPart {
 
-	protected TreeNode<AbstractMapPart> treePlace;
+	protected TreeNode<MapPart> treePlace;
 	protected Rectangle rect;
 
 	// @Override
@@ -19,9 +19,9 @@ public abstract class AbstractMapPart implements MapPart {
 		return treePlace.isRoot();
 	}
 
-	public List<AbstractMapPart> getChildren() {
-		List<AbstractMapPart> ans = new ArrayList<AbstractMapPart>();
-		for (TreeNode<AbstractMapPart> c : treePlace.getChildren()) {
+	public List<MapPart> getChildren() {
+		List<MapPart> ans = new ArrayList<MapPart>();
+		for (TreeNode<MapPart> c : treePlace.getChildren()) {
 			ans.add(c.getOwner());
 		}
 		return ans;
