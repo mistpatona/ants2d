@@ -11,6 +11,10 @@ public abstract class XY {
 		return y;
 	}
 
+	public String toString() {
+		return "@" + x + ":" + y;
+	}
+	
 	public abstract XY create(final double x, final double y);
 
 	public abstract XY create(final XY that);
