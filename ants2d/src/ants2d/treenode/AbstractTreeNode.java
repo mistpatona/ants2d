@@ -15,9 +15,16 @@ public abstract class AbstractTreeNode<T> implements TreeNode<T> {
 	}
 	
 	@Override
+	public void setOwner(T _owner){
+		owner = _owner;
+	}
+	
+	@Override
 	public T getOwner() {
 		return owner;
 	}
+	
+	
 	
 	@Override
 	public void switchChild(TreeNode<T> _old, TreeNode<T> _new) {

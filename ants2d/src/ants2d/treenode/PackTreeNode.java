@@ -36,14 +36,5 @@ public class PackTreeNode<T> extends AbstractTreeNode<T> {
 		return false;
 	}
 
-	@Override
-	public boolean isLeaf() {
-		return false;
-	}
-
-	@Override
-	public boolean isPack() {
-		return true;
-	}
 
 }
