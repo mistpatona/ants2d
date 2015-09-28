@@ -3,6 +3,7 @@ package ants2d.map;
 import org.junit.runners.Suite;
 
 import ants2d.geometry.LineEquationTest;
+import ants2d.geometry.SegmentTest;
 import ants2d.mappart.MapTest;
 
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.junit.runner.RunWith;
 @Suite.SuiteClasses({	PointTest.class, 
 						RectangleTest.class,
 						MapTest.class,
+						SegmentTest.class,
 						LineEquationTest.class
 					})
 

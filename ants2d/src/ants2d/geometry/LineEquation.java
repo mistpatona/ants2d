@@ -1,5 +1,6 @@
 package ants2d.geometry;
 
+import ants2d.map.Offset;
 import ants2d.map.Point;
 
 public class LineEquation {
@@ -49,6 +50,19 @@ public class LineEquation {
 	public boolean crossesSegment(Segment s){
 		return f(s.getP0())*f(s.getP1()) <0; 
 		//segment's ends are on different sides of line
+	}
+	
+	public Point projection(Point p){ // projection of point p onto this line
+		double k = 1/(a*a + b*b);
+		double d = a*p.getY() - b*p.getX();
+		double x = k*(-a*c - b*d);
+		double y = k*(a*d - b*c);
+		return new Point(x,y);
+	}
+	
+	public Offset directionVector(){
+		double k = 1/Math.hypot(a, b); // to normalize length
+		return new Offset(a*k,b*k);
 	}
 	
 	public boolean isNormalized(){

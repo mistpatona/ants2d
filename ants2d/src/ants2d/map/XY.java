@@ -48,4 +48,8 @@ public abstract class XY {
 	public XY scaleBy(double k) {
 		return create(getX()*k,getY()*k);
 	}
+	
+	public double scalarProduct(XY other) {
+		return this.getX()*other.getX() + this.getY()*other.getY(); 
+	}
 }
