@@ -26,4 +26,10 @@ public class Point extends XY {
 	public Offset sub(Point other) {
 		return new Offset(super.sub(other));
 	}
+	public Point sum(Offset other) {
+		return new Point(super.sum(other));
+	}
+	public Point sub(Offset other) {
+		return new Point(super.sub(other));
+	}
 }

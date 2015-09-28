@@ -33,8 +33,6 @@ public abstract class XY {
 	
 	public double distanceTo(XY other) {
 		XY delta = sub(other);
-		//return Math.sqrt(delta.sumSqr());
-		//return Math.hypot(delta.getX(), delta.getY());
 		return delta.length();
 	}
 	public double length(){

@@ -30,4 +30,7 @@ public class Offset extends XY {
 		return true;
 	}
 
+	public Offset sum(Offset other) {
+		return new Offset(super.sum(other));
+	}
 }
