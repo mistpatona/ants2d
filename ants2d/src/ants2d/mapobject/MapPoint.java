@@ -1,4 +1,7 @@
-package ants2d.map;
+package ants2d.mapobject;
+
+import ants2d.map.Point;
+import ants2d.map.XY;
 
 public class MapPoint implements MapObject {
 

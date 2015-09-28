@@ -3,11 +3,11 @@ package ants2d.mappart;
 import org.junit.Test;
 
 import ants2d.map.AB;
-import ants2d.map.MapObject;
-import ants2d.map.MapPoint;
 import ants2d.map.Point;
 import ants2d.map.Rectangle;
 import ants2d.map.XY;
+import ants2d.mapobject.MapObject;
+import ants2d.mapobject.MapPoint;
 
 import static org.junit.Assert.*;
 

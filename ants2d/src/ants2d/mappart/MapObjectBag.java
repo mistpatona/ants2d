@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ants2d.map.AB;
-import ants2d.map.MapObject;
 import ants2d.map.Point;
 import ants2d.map.Rectangle;
+import ants2d.mapobject.MapObject;
 import ants2d.treenode.TreeNode;
 
 public class MapObjectBag extends AbstractMapPart {
