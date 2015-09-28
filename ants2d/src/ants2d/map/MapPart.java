@@ -12,4 +12,5 @@ public interface MapPart {
 	void add(MapObject x);
 	void trySplit(int threshold);
 	Rectangle getRectangle();
+	List<MapPart> getChildren();
 }
