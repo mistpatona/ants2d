@@ -5,22 +5,42 @@ import java.util.List;
 
 import ants2d.geometry.AB;
 
-public class Rectangle implements RectShape {
+public class Rectangle extends AB implements RectShape {
 	
-	private Point p0,p1;
+	//private Point p0,p1;
 	
 	public Rectangle(final Point _p0, final Point _p1) {
-		p0 = _p0;
-		p1 = _p1;
+		super(_p0,_p1);
 	}
 	
 	public Rectangle(final RectShape area) {
-		p0 = area.getCorner(Quadrants.NW);
-		p1 = area.getCorner(Quadrants.SE);
+		super(area.getCorner(Quadrants.NW),area.getCorner(Quadrants.SE));
+	}
+	
+	private static Point pointNW(AB s) {
+		double x0 = s.getP0().getX();
+		double x1 = s.getP1().getX();
+		double y0 = s.getP0().getY();
+		double y1 = s.getP1().getY();
+		double rx0 = Math.min(x1, x0);
+		double ry0 = Math.min(y0, y1);
+		return new Point(rx0,ry0);
+	}
+	
+	private static Point pointSE(AB s) {
+		double x0 = s.getP0().getX();
+		double x1 = s.getP1().getX();
+		double y0 = s.getP0().getY();
+		double y1 = s.getP1().getY();
+		double rx1 = Math.max(x0, x1);
+		double ry1 = Math.max(y0, y1);
+		return new Point(rx1,ry1);
 	}
 	
 	public Rectangle(AB s) {
-		double x0 = s.getP0().getX();
+		super(pointNW(s),pointSE(s));
+		//TODO: this is ugly code in pointNW and pointSE
+/*		double x0 = s.getP0().getX();
 		double x1 = s.getP1().getX();
 		double y0 = s.getP0().getY();
 		double y1 = s.getP1().getY();
@@ -28,8 +48,11 @@ public class Rectangle implements RectShape {
 		double rx1 = Math.max(x0, x1);
 		double ry0 = Math.min(y0, y1);
 		double ry1 = Math.max(y0, y1);
-		p0 = new Point(rx0,ry0);
-		p1 = new Point(rx1,ry1);
+		super( new Point(rx0,ry0),new Point(rx1,ry1));*/
+	}
+	
+	public Rectangle(Rectangle r) {
+		super(r.getP0(),r.getP1());
 	}
 	
 	public List<Rectangle> split4() {
@@ -66,11 +89,13 @@ public class Rectangle implements RectShape {
 
 	@Override
 	public Offset dimentions() {
-		return p1.sub(p0);
+		return p1.sub(getP0());
 	}
 
 	@Override
 	public Point getCorner(Quadrants q) {
+		Point p0 = getP0();
+		Point p1 = getP1();
 		switch (q) {
 			case NW: return p0.create(p0); // to protect from accidental change
 			case SE: return p0.create(p1);
