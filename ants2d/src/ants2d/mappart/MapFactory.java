@@ -1,5 +1,6 @@
-package ants2d.map;
+package ants2d.mappart;
 
+import ants2d.map.Rectangle;
 import ants2d.treenode.RootTreeNode;
 import ants2d.treenode.TreeNode;
 

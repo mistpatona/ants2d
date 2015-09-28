@@ -1,4 +1,7 @@
-package ants2d.map;
+package ants2d.mappart;
+
+import ants2d.map.TraversalClass;
+import ants2d.map.TraversalParams;
 
 public abstract class MapPartTraversalParams<X> 
 		implements TraversalParams<MapPart, X> {

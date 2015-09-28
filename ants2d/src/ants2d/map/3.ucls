@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <interface id="1" language="java" name="ants2d.map.MapPart" project="ants2d" 
-    file="/ants2d/src/ants2d/map/MapPart.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="1" language="java" name="ants2d.mappart.MapPart" project="ants2d" 
+    file="/ants2d/src/ants2d/mappart/MapPart.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="599" y="-72"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,17 +10,17 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="2" language="java" name="ants2d.map.AbstractMapPart" project="ants2d" 
-    file="/ants2d/src/ants2d/map/AbstractMapPart.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="278" width="343" x="424" y="37"/>    
+  <class id="2" language="java" name="ants2d.mappart.AbstractMapPart" project="ants2d" 
+    file="/ants2d/src/ants2d/mappart/AbstractMapPart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="574" y="205"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="ants2d.map.MapObjectBag" project="ants2d" 
-    file="/ants2d/src/ants2d/map/MapObjectBag.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="ants2d.mappart.MapObjectBag" project="ants2d" 
+    file="/ants2d/src/ants2d/mappart/MapObjectBag.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="170" width="343" x="41" y="355"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="ants2d.map.MapBag" project="ants2d" file="/ants2d/src/ants2d/map/MapBag.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="ants2d.mappart.MapBag" project="ants2d" 
+    file="/ants2d/src/ants2d/mappart/MapBag.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="134" width="343" x="782" y="355"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,18 +37,18 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="5">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <generalization id="6">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <realization id="7">    
+  <realization id="5">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
+  <generalization id="6">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="7">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
