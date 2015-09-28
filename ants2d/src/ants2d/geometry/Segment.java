@@ -1,6 +1,6 @@
 package ants2d.geometry;
 
-import ants2d.map.AB;
+import ants2d.map.RectShape;
 import ants2d.map.Offset;
 import ants2d.map.Point;
 import ants2d.map.Quadrants;
@@ -36,9 +36,7 @@ public class Segment {
 	}
 	
 	public double distanceTo(Point p){
-		double d0=p.distanceTo(p0);
-		double d1=p.distanceTo(p1);
-		double d10 = Math.min(d0, d1);
+
 		LineEquation eq = this.lineEquation();
 		Point proj = eq.projection(p);
 		LineEquation perp = eq.perpendicularLine(p);
@@ -46,7 +44,7 @@ public class Segment {
 			return proj.distanceTo(p);
 		}
 		else {
-			return d10;
+			return Math.min(p.distanceTo(p0), p.distanceTo(p1));
 		}
 		
 		

@@ -16,9 +16,9 @@ public class Offset extends XY {
 	public Offset create(double x, double y) {
 		return new Offset(x, y);
 	}
-	
+
 	@Override
-	public Offset create(final XY that){
+	public Offset create(final XY that) {
 		return new Offset(that);
 	}
 
@@ -32,5 +32,9 @@ public class Offset extends XY {
 
 	public Offset sum(Offset other) {
 		return new Offset(super.sum(other));
+	}
+
+	public Offset scaleBy(double k) {
+		return create(super.scaleBy(k));
 	}
 }

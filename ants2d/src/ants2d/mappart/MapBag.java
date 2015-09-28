@@ -3,7 +3,7 @@ package ants2d.mappart;
 import java.util.ArrayList;
 import java.util.List;
 
-import ants2d.map.AB;
+import ants2d.map.RectShape;
 import ants2d.map.Point;
 import ants2d.map.Rectangle;
 import ants2d.mapobject.MapObject;
@@ -43,7 +43,7 @@ public class MapBag extends AbstractMapPart {
 		throw new Error("Point belongs to no map");
 	}
 	
-	protected MapBag(AB area, TreeNode<MapPart> tn){
+	protected MapBag(RectShape area, TreeNode<MapPart> tn){
 		rect=new Rectangle(area);
 		treePlace=tn;
 	}

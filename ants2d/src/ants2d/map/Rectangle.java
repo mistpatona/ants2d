@@ -3,7 +3,9 @@ package ants2d.map;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rectangle implements AB {
+import ants2d.geometry.Segment;
+
+public class Rectangle implements RectShape {
 	
 	private Point p0,p1;
 	
@@ -12,16 +14,27 @@ public class Rectangle implements AB {
 		p1 = _p1;
 	}
 	
-	public Rectangle(final AB area) {
+	public Rectangle(final RectShape area) {
 		p0 = area.getCorner(Quadrants.NW);
 		p1 = area.getCorner(Quadrants.SE);
 	}
 	
+	public Rectangle(Segment s) {
+		double x0 = s.getP0().getX();
+		double x1 = s.getP1().getX();
+		double y0 = s.getP0().getY();
+		double y1 = s.getP1().getY();
+		double rx0 = Math.min(x1, x0);
+		double rx1 = Math.max(x0, x1);
+		double ry0 = Math.min(y0, y1);
+		double ry1 = Math.max(y0, y1);
+		p0 = new Point(rx0,ry0);
+		p1 = new Point(rx1,ry1);
+	}
+	
 	public List<Rectangle> split4() {
 		List<Rectangle> ans = new ArrayList<Rectangle>();
-		//Offset diag = dimentions();//p1.sub(p0);
-		//Offset d2 = new Offset(diag.scaleBy(0.5));
-		Point p = new Point(p0.sum(dimentions().scaleBy(0.5))); // center point
+		Point p = p0.sum(dimentions().scaleBy(0.5)); // center point
 		ans.add(new Rectangle(p0,p));
 		ans.add(new Rectangle(new Point(p.getX(),p0.getY()),new Point(p1.getX(),p.getY())));
 		ans.add(new Rectangle(new Point(p0.getX(),p.getY()),new Point(p.getX(),p1.getY())));
@@ -31,8 +44,8 @@ public class Rectangle implements AB {
 	
 	protected List<Rectangle> split2(Offset d) {
 		List<Rectangle> ans = new ArrayList<Rectangle>(2);
-		ans.add(new Rectangle(p0,new Point(p1.sub(d))));
-		ans.add(new Rectangle(new Point(p0.sum(d)),p1));
+		ans.add(new Rectangle(p0,p1.sub(d)));
+		ans.add(new Rectangle(p0.sum(d),p1));
 		return ans;
 	}
 	
@@ -67,7 +80,7 @@ public class Rectangle implements AB {
 		return null;
 	}
 	
-	public boolean belongsTo(AB r) {
+	public boolean belongsTo(RectShape r) {
 		return r.contains(p0) && r.contains(p1); 
 	}
 	

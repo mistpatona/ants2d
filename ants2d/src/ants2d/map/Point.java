@@ -32,4 +32,8 @@ public class Point extends XY {
 	public Point sub(Offset other) {
 		return new Point(super.sub(other));
 	}
+	public Point scaleBy(double k) {
+		return create(super.scaleBy(k));
+	}
+	
 }

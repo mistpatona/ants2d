@@ -3,7 +3,7 @@ package ants2d.mappart;
 import java.util.ArrayList;
 import java.util.List;
 
-import ants2d.map.AB;
+import ants2d.map.RectShape;
 import ants2d.map.Point;
 import ants2d.map.Rectangle;
 import ants2d.mapobject.MapObject;
@@ -46,7 +46,7 @@ public class MapObjectBag extends AbstractMapPart {
 		 */
 	}
 
-	protected MapObjectBag(AB area, TreeNode<MapPart> tn) {
+	protected MapObjectBag(RectShape area, TreeNode<MapPart> tn) {
 		rect = new Rectangle(area);
 		treePlace = tn;
 		list = new ArrayList<MapObject>();

@@ -2,7 +2,7 @@ package ants2d.mappart;
 
 import org.junit.Test;
 
-import ants2d.map.AB;
+import ants2d.map.RectShape;
 import ants2d.map.Point;
 import ants2d.map.Rectangle;
 import ants2d.map.XY;
@@ -59,7 +59,7 @@ public class MapTest {
 		assertTrue(l2.isEmpty());
 	}
 
-	public double area(AB rr) {
+	public double area(RectShape rr) {
 		XY r = rr.dimentions();
 		return r.getX() * r.getY();
 	}
