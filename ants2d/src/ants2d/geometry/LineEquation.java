@@ -26,7 +26,7 @@ public class LineEquation {
 		a = _a;
 		b = _b;
 		c = _c;
-		if (Math.abs(a)+Math.abs(b) < Math.abs(c) * 1000) { // (c!=0) for floating point
+		if (Math.abs(a)+Math.abs(b) < Math.abs(c) * 10000) { // (c!=0) for floating point
 			a = a/c;
 			b = b/c;
 			c = 1;
@@ -41,7 +41,24 @@ public class LineEquation {
 	public boolean isParallelTo(LineEquation other, double eps) {
 		return Math.abs(this.getA()*other.getB() - this.getB()*other.getA()) < eps;
 	}
+	
+	public LineEquation parallelShifted(double dc) {
+		return new LineEquation(a,b,c+dc);
+	}
 
+	public boolean crossesSegment(Segment s){
+		return f(s.getP0())*f(s.getP1()) <0; 
+		//segment's ends are on different sides of line
+	}
+	
+	public boolean isNormalized(){
+		return (overhelmsByAbs(Math.abs(a)+Math.abs(b),c,0.0001) // i.e. c=0 
+				|| (overhelmsByAbs(1,Math.abs(c)-1,0.0001))); // c=1
+	}
+	
+	public boolean overhelmsByAbs(double big, double small,double eps) {
+		return Math.abs(big)*eps > Math.abs(small);
+	}
 	
 	protected double getA() { return a;}
 	protected double getB() { return b;}

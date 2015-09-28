@@ -22,5 +22,9 @@ public class Segment {
 	public Point getP1() {
 		return p1;
 	}
+	
+	public double length(){
+		return p0.distanceTo(p1);
+	}
 
 }

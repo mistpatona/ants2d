@@ -12,7 +12,7 @@ public class LineEquationTest {
 		LineEquation line = new LineEquation(-1.0,-1.0,2.0);
 		Point p0 = new Point(0,2);
 		Point p1 = new Point(2,0);
-		Double eps = 0.001;
+		
 		assertEquals("p0 belongs to line",0,line.f(p0),eps);
 		assertEquals("p1 belongs to line",0,line.f(p1),eps);
 		Point w1 = new Point(5,5);
@@ -30,8 +30,6 @@ public class LineEquationTest {
 		Point _p0 = new Point(p0.sub(d));
 		Point _p1 = new Point(p1.sum(d));
 		
-		Double eps = 0.001;
-		
 		LineEquation line = new LineEquation(p0,p1);
 		assertEquals(0,line.f(p0),eps);
 		assertEquals(line.f(p1),0,eps);
@@ -46,7 +44,6 @@ public class LineEquationTest {
 		Point p1 = new Point(1,0);
 		LineEquation line = new LineEquation(p0,p1);
 		Point p = new Point(1,2);
-		Double eps = 0.001;
 		LineEquation perp = line.perpendicularLine(p);
 		LineEquation manPerp = new LineEquation(1.0,-1.0,1.0);
 		checkLinesKoefEquality(manPerp,perp,eps);
@@ -60,4 +57,10 @@ public class LineEquationTest {
 		assertEquals("koef B",line.getB(),other.getB(),eps);
 		assertEquals("koef C",line.getC(),other.getC(),eps);
 	}
+	
+	public boolean overhelmsByAbs(double big, double small) {
+		return Math.abs(big)*eps > Math.abs(small);
+	}
+	
+	public static double eps = 0.0001;
 }

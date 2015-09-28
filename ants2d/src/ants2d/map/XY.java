@@ -33,7 +33,12 @@ public abstract class XY {
 	
 	public double distanceTo(XY other) {
 		XY delta = sub(other);
-		return Math.sqrt(delta.sumSqr());
+		//return Math.sqrt(delta.sumSqr());
+		//return Math.hypot(delta.getX(), delta.getY());
+		return delta.length();
+	}
+	public double length(){
+		return Math.hypot(getX(), getY());
 	}
 
 	public abstract boolean isAbs();
