@@ -3,7 +3,7 @@ package ants2d.map;
 import java.util.ArrayList;
 import java.util.List;
 
-import ants2d.geometry.Segment;
+import ants2d.geometry.AB;
 
 public class Rectangle implements RectShape {
 	
@@ -19,7 +19,7 @@ public class Rectangle implements RectShape {
 		p1 = area.getCorner(Quadrants.SE);
 	}
 	
-	public Rectangle(Segment s) {
+	public Rectangle(AB s) {
 		double x0 = s.getP0().getX();
 		double x1 = s.getP1().getX();
 		double y0 = s.getP0().getY();
