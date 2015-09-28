@@ -1,8 +1,6 @@
 package ants2d.geometry;
 import org.junit.Test;
 
-import ants2d.map.Point;
-
 import static org.junit.Assert.*;
 
 public class LineEquationTest {

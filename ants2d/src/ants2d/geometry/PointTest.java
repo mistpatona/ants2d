@@ -1,4 +1,4 @@
-package ants2d.map;
+package ants2d.geometry;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

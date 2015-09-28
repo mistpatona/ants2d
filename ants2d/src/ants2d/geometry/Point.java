@@ -1,4 +1,4 @@
-package ants2d.map;
+package ants2d.geometry;
 
 public class Point extends XY {
 

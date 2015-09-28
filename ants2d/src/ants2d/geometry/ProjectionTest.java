@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import ants2d.map.Point;
-
 public class ProjectionTest {
 	private double eps = 1.0e-4;
 	@Test

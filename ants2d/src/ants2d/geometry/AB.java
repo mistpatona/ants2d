@@ -1,9 +1,5 @@
 package ants2d.geometry;
 
-
-import ants2d.map.Point;
-
-
 public class AB {
 	
 	protected Point p0;

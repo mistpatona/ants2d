@@ -1,9 +1,9 @@
-package ants2d.map;
+package ants2d.geometry;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ants2d.geometry.AB;
+import ants2d.map.Quadrants;
 
 public class Rectangle extends AB implements RectShape {
 	

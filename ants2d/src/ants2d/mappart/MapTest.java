@@ -2,10 +2,10 @@ package ants2d.mappart;
 
 import org.junit.Test;
 
-import ants2d.map.RectShape;
-import ants2d.map.Point;
-import ants2d.map.Rectangle;
-import ants2d.map.XY;
+import ants2d.geometry.Point;
+import ants2d.geometry.RectShape;
+import ants2d.geometry.Rectangle;
+import ants2d.geometry.XY;
 import ants2d.mapobject.MapObject;
 import ants2d.mapobject.MapPoint;
 

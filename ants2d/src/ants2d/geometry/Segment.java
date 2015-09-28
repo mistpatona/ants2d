@@ -1,7 +1,5 @@
 package ants2d.geometry;
 
-import ants2d.map.Point;
-
 public class Segment extends AB {
 
 	public Segment(Point _p0, Point _p1) {

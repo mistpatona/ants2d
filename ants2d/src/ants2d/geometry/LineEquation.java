@@ -1,8 +1,5 @@
 package ants2d.geometry;
 
-import ants2d.map.Offset;
-import ants2d.map.Point;
-
 public class LineEquation {
 	private double a, b, c;
 
