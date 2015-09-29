@@ -47,6 +47,11 @@ public class LineEquation {
 		return f(s.getP0()) * f(s.getP1()) < 0;
 		// segment's ends are on different sides of line
 	}
+	
+	public boolean crossesSegmentOrP0(Segment s) {
+		return crossesSegment(s) ||
+				Approximately.overhelmsByAbs(f(s.getP1()), f(s.getP0()));
+	}
 
 	public Point projection(Point p) { // projection of point p onto this line
 		double k = 1 / (a * a + b * b);

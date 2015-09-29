@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import ants2d.geometry.Approximately;
 import ants2d.geometry.Point;
+import ants2d.geometry.Rectangle;
 import ants2d.geometry.Segment;
 import ants2d.geometry.Triangle;
 
@@ -37,6 +38,21 @@ public class TriangleTest {
 		Triangle tb = new Triangle(b,c,abm);
 		Triangle t = new Triangle(a,b,c);
 		assertEquals("sum of areas",t.area(),ta.area()+tb.area(),eps);
+	}
+	@Test
+	public void nrsum(){
+		RandomPointsIterator rs = 
+				new RandomPointsIterator(new Rectangle(new Point(0,0),new Point(10,10)));
+		for(int i=0;i<100;i++){
+			Point a = rs.next();
+			Point b = rs.next();
+			Point c = rs.next();
+			Point m = new Segment(a,b).parametrized(0.45);
+			Triangle ta = new Triangle(a,m,c);
+			Triangle tb = new Triangle(b,c,m);
+			Triangle t = new Triangle(a,b,c);
+			assertEquals("sum of areas",t.area(),ta.area()+tb.area(),eps);
+		}
 	}
 
 }

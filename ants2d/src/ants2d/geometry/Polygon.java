@@ -18,7 +18,7 @@ public class Polygon implements Polygonic {
 	public int intersectionsWith(Segment s) {
 		int count = 0;
 		for (Segment x : segments()) 
-			if (x.intersectsSegment(s)) count++;
+			if (x.intersectsSegmentOrP0(s)) count++;
 		return count;
 	}
 	public List<Segment> segments(){
@@ -43,5 +43,18 @@ public class Polygon implements Polygonic {
 	@Override
 	public List<Point> points() {
 		return getPoints();
+	}
+	
+	public Point outsidePoint() { //point is guaranteed to be outside of this polygon
+		Rectangle encl = Rectangle.enclosing(getPoints());
+		Double margin = encl.dimentions().length() /10.0;//outside but not far
+		return Rectangle.enclosing(encl, margin).getP0();
+	}
+	
+	public boolean containsPoint(Point p) {
+		Point out = outsidePoint(); 
+		// calculate point that is safely out of our polygon
+		Segment s = new Segment(p,out);
+		return ( (this.intersectionsWith(s) & 1) == 1 ); // odd count means point is inside
 	}
 }
