@@ -36,5 +36,10 @@ public class Segment extends AB {
 	public boolean intersectsSegment(Segment other) {
 		return lineEquation().crossesSegment(other) && other.lineEquation().crossesSegment(this);
 	}
+	
+	public Point parametrized(double t) {
+		return this.getP0().sum( this.getP1().sub(this.getP0()).scaleBy(t) );
+		
+	}
 
 }

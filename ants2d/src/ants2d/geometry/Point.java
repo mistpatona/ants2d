@@ -1,18 +1,37 @@
 package ants2d.geometry;
 
+import java.util.List;
+
 public class Point extends XY {
 
-	public Point(double _x, double _y) {
-		x = _x;
-		y = _y;
+	public Point(double x, double y) {
+		super(x,y);
 	}
 	public Point(final XY xy) {
-		x = xy.getX();
-		y = xy.getY();
+		super(xy);
 	}
 	@Override
 	public Point create(double x, double y) {
 		return new Point(x,y);
+	}
+	
+	protected static Point outsidePoint(List<Point> ps) {
+		Rectangle encl = Rectangle.enclosing(ps);
+		Double margin = encl.dimentions().length() /10.0;
+		return Rectangle.enclosing(encl, margin).getP0();
+	}
+	public boolean isContainedInside(List<Point> ps) {
+		Point out = outsidePoint(ps); 
+		// calculate point that is safely out of our polygon
+		Segment s = new Segment(this,out);
+		// count times that our segment intersects with ribs of a poly
+		int count = 0;
+		Point pold=ps.get(ps.size()-1);//last element
+		for (Point p : ps){ 
+			if ((new Segment(p,pold)).intersectsSegment(s)) count++;
+			pold = p;
+		}
+		return ( (count & 1) == 1 ); // odd count means point is inside
 	}
 	
 	@Override

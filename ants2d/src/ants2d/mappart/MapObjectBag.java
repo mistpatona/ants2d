@@ -31,6 +31,15 @@ public class MapObjectBag extends AbstractMapPart {
 		}
 		return ans;
 	}
+	@Override
+	public List<MapObject> getOwnNearbyObjects(Rectangle r) {
+		List<MapObject> ans = new ArrayList<MapObject>();
+		for (MapObject x : list) {
+			if (r.contains(x.getCoords()))
+				ans.add(x);
+		}
+		return ans;
+	}
 
 	@Override
 	public MapPart findMapLocally(Point p) {

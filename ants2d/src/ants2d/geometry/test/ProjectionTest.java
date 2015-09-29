@@ -1,8 +1,11 @@
-package ants2d.geometry;
+package ants2d.geometry.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import ants2d.geometry.LineEquation;
+import ants2d.geometry.Point;
 
 public class ProjectionTest {
 	private double eps = 1.0e-4;

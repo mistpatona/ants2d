@@ -2,6 +2,8 @@ package ants2d.geometry;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 
 public class PointTest {
 	public static final double eps = 0.0001;
@@ -50,5 +52,21 @@ public class PointTest {
 		XY r = p1.sub(p2);
 		assertTrue(r.isOffs());
 		assertFalse(r.isAbs());
+	}
+	@Test
+	public void polyContainTest() {
+		
+		Rectangle r = new Rectangle(new Point(-2.0,-2.0),new Point(2.0,2.0) );
+		Point p = new Point(0.0,0.0);
+		assertTrue(r.contains(p));
+		Point out = new Point(0.0,10.0);
+		assertFalse(r.contains(out));
+		List<Point> lst = r.points();
+		Point out2 = Point.outsidePoint(lst);
+		assertFalse(r.contains(out2));
+		assertTrue((new Point(1.0,1.15)).isContainedInside(lst));
+		assertTrue(p.isContainedInside(lst));
+		assertFalse((new Point(3.0,-3.0)).isContainedInside(lst));
+		assertFalse(out.isContainedInside(lst));
 	}
 }

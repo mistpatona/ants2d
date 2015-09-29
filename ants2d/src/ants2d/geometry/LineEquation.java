@@ -70,15 +70,15 @@ public class LineEquation {
 		return Math.abs(big) * eps > Math.abs(small);
 	}
 
-	protected double getA() {
+	public double getA() {
 		return a;
 	}
 
-	protected double getB() {
+	public double getB() {
 		return b;
 	}
 
-	protected double getC() {
+	public double getC() {
 		return c;
 	}
 }

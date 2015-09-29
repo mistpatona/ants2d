@@ -53,6 +53,15 @@ public abstract class AbstractMapPart implements MapPart {
 		}
 
 	}
+	
+	public List<MapObject> getNearbyObjects(Rectangle r) {
+		if (rect.overlaps(r) || isRoot()) {
+			return getOwnNearbyObjects(r);
+		} else {
+			return getParent().getNearbyObjects(r);
+		}
+
+	}
 
 	public abstract List<MapObject> getOwnNearbyObjects(Point p, double radius);
 

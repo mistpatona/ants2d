@@ -1,15 +1,13 @@
 package ants2d.geometry;
-
+/* could also be named "Vector in mathematical sense" */
 public class Offset extends XY {
 
-	public Offset(double _x, double _y) {
-		x = _x;
-		y = _y;
+	public Offset(double x, double y) {
+		super(x,y);
 	}
 
 	public Offset(final XY xy) {
-		x = xy.getX();
-		y = xy.getY();
+		super(xy);
 	}
 
 	@Override
@@ -36,5 +34,9 @@ public class Offset extends XY {
 
 	public Offset scaleBy(double k) {
 		return create(super.scaleBy(k));
+	}
+	
+	public double cartesianProduct(Offset other) {
+		return this.getX()*other.getY() - this.getY()*other.getX();
 	}
 }

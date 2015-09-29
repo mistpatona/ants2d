@@ -11,7 +11,9 @@ public interface MapPart {
 	boolean contains(Point p);
 	void removeWanting();
 	List<MapObject> getNearbyObjects(Point p, double radius);
+	List<MapObject> getNearbyObjects(Rectangle r);
 	List<MapObject> getOwnNearbyObjects(Point p, double radius);//?
+	List<MapObject> getOwnNearbyObjects(Rectangle r);
 	void add(MapObject x);
 	void trySplit(int threshold);
 	Rectangle getRectangle();

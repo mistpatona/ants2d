@@ -1,8 +1,12 @@
-package ants2d.geometry;
+package ants2d.geometry.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import ants2d.geometry.LineEquation;
+import ants2d.geometry.Point;
+import ants2d.geometry.Segment;
 
 
 public class SegmentTest {

@@ -17,5 +17,9 @@ public class AB {
 	public Point getP1() {
 		return p1;
 	}
+	
+	public Point centrum() {
+		return p0.sum(p1.sub(p0).scaleBy(0.5));
+	}
 
 }

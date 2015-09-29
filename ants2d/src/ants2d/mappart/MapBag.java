@@ -27,6 +27,15 @@ public class MapBag extends AbstractMapPart {
 		}
 		return ans;
 	}
+	public List<MapObject> getOwnNearbyObjects(Rectangle r) {
+		List<MapObject> ans = new ArrayList<MapObject>();
+		for (MapPart m : getChildren()) {
+			for (MapObject mo : m.getOwnNearbyObjects(r)) {
+				ans.add(mo);
+			}
+		}
+		return ans;
+	}
 
 	public void addBagChild(Rectangle r) {
 		 TreeNode<MapPart> c = treePlace.makeChild();

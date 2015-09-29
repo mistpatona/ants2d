@@ -3,6 +3,13 @@ package ants2d.geometry;
 public abstract class XY {
 	protected double x, y;
 
+	protected XY(double _x, double _y) {
+		x = _x;
+		y = _y;
+	}
+	protected XY(XY xy) {
+	this(xy.getX(),xy.getY());
+	}
 	public double getX() {
 		return x;
 	}
@@ -49,5 +56,9 @@ public abstract class XY {
 	
 	public double scalarProduct(XY other) {
 		return this.getX()*other.getX() + this.getY()*other.getY(); 
+	}
+	
+	public double polarAngle() {
+		return Math.atan2(getY(),getX());
 	}
 }

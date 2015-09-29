@@ -1,6 +1,10 @@
-package ants2d.geometry;
+package ants2d.geometry.test;
 
 import org.junit.Test;
+
+import ants2d.geometry.Point;
+import ants2d.geometry.Rectangle;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
