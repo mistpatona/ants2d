@@ -6,7 +6,7 @@ import java.util.List;
 import ants2d.geometry.Point;
 import ants2d.geometry.RectShape;
 import ants2d.geometry.Rectangle;
-import ants2d.mapobject.MapObject;
+import ants2d.mapobject.MapPoint;
 import ants2d.treenode.TreeNode;
 
 public class MapBag extends AbstractMapPart {
@@ -18,19 +18,19 @@ public class MapBag extends AbstractMapPart {
 		}
 	}
 
-	public List<MapObject> getOwnNearbyObjects(Point p, double radius) {
-		List<MapObject> ans = new ArrayList<MapObject>();
+	public List<MapPoint> getOwnNearbyObjects(Point p, double radius) {
+		List<MapPoint> ans = new ArrayList<MapPoint>();
 		for (MapPart m : getChildren()) {
-			for (MapObject mo : m.getOwnNearbyObjects(p, radius)) {
+			for (MapPoint mo : m.getOwnNearbyObjects(p, radius)) {
 				ans.add(mo);
 			}
 		}
 		return ans;
 	}
-	public List<MapObject> getOwnNearbyObjects(Rectangle r) {
-		List<MapObject> ans = new ArrayList<MapObject>();
+	public List<MapPoint> getOwnNearbyObjects(Rectangle r) {
+		List<MapPoint> ans = new ArrayList<MapPoint>();
 		for (MapPart m : getChildren()) {
-			for (MapObject mo : m.getOwnNearbyObjects(r)) {
+			for (MapPoint mo : m.getOwnNearbyObjects(r)) {
 				ans.add(mo);
 			}
 		}

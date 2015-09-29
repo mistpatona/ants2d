@@ -6,35 +6,35 @@ import java.util.List;
 import ants2d.geometry.Point;
 import ants2d.geometry.RectShape;
 import ants2d.geometry.Rectangle;
-import ants2d.mapobject.MapObject;
+import ants2d.mapobject.MapPoint;
 import ants2d.treenode.TreeNode;
 
 public class MapObjectBag extends AbstractMapPart {
 
-	List<MapObject> list;
+	List<MapPoint> list;
 
 	public static final int MaxObjects = 2; // TODO: this is a development value
 
 	public void removeWanting() {
-		for (MapObject x : list) {
+		for (MapPoint x : list) {
 			if (x.wantsToBeRemoved())
 				list.remove(x);
 		}
 	}
 
 	@Override
-	public List<MapObject> getOwnNearbyObjects(Point p, double radius) {
-		List<MapObject> ans = new ArrayList<MapObject>();
-		for (MapObject x : list) {
+	public List<MapPoint> getOwnNearbyObjects(Point p, double radius) {
+		List<MapPoint> ans = new ArrayList<MapPoint>();
+		for (MapPoint x : list) {
 			if (p.distanceTo(x.getCoords()) <= radius)
 				ans.add(x);
 		}
 		return ans;
 	}
 	@Override
-	public List<MapObject> getOwnNearbyObjects(Rectangle r) {
-		List<MapObject> ans = new ArrayList<MapObject>();
-		for (MapObject x : list) {
+	public List<MapPoint> getOwnNearbyObjects(Rectangle r) {
+		List<MapPoint> ans = new ArrayList<MapPoint>();
+		for (MapPoint x : list) {
 			if (r.contains(x.getCoords()))
 				ans.add(x);
 		}
@@ -47,7 +47,7 @@ public class MapObjectBag extends AbstractMapPart {
 	}
 
 	@Override
-	public void add(MapObject x) {
+	public void add(MapPoint x) {
 		list.add(x);
 		/*
 		 * if (list.size() > MaxObjects) doSplit(); -- calling object will loose
@@ -58,7 +58,7 @@ public class MapObjectBag extends AbstractMapPart {
 	protected MapObjectBag(RectShape area, TreeNode<MapPart> tn) {
 		rect = new Rectangle(area);
 		treePlace = tn;
-		list = new ArrayList<MapObject>();
+		list = new ArrayList<MapPoint>();
 	}
 
 	public void trySplit(int threshold) {
@@ -74,7 +74,7 @@ public class MapObjectBag extends AbstractMapPart {
 		for (Rectangle r : nr) {
 			ans.addBagChild(r);
 		}
-		for (MapObject x : list) {
+		for (MapPoint x : list) {
 			ans.add(x);
 		}
 		// treePlace.setOwner(ans);

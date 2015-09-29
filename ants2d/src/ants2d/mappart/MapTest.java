@@ -6,8 +6,8 @@ import ants2d.geometry.Point;
 import ants2d.geometry.RectShape;
 import ants2d.geometry.Rectangle;
 import ants2d.geometry.XY;
-import ants2d.mapobject.MapObject;
 import ants2d.mapobject.MapPoint;
+import ants2d.mapobject.MapNamedPoint;
 
 import static org.junit.Assert.*;
 
@@ -44,14 +44,14 @@ public class MapTest {
 	public MapPart prepareMap()
 	{
 		MapPart m = MapFactory.newMap(new Rectangle(new Point(0, 0), new Point(10, 10)));
-		MapPoint p = new MapPoint(new Point(1, 1), "one");
+		MapNamedPoint p = new MapNamedPoint(new Point(1, 1), "one");
 		m.add(p);
-		m.add(new MapPoint(new Point(2, 2), "two"));
-		m.add(new MapPoint(new Point(9, 9), "nine"));
+		m.add(new MapNamedPoint(new Point(2, 2), "two"));
+		m.add(new MapNamedPoint(new Point(9, 9), "nine"));
 		return m;
 	}
 	public void checkNearbyObjectsCount(MapPart m) {
-		List<MapObject> l2 = m.getNearbyObjects(new Point(1.5, 1.5), 1.0);
+		List<MapPoint> l2 = m.getNearbyObjects(new Point(1.5, 1.5), 1.0);
 		assertEquals(l2.size(), 2);
 		l2 = m.getNearbyObjects(new Point(1.5, 1.5), 15.0);
 		assertEquals(l2.size(), 3);

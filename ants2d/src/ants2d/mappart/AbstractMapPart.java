@@ -5,7 +5,7 @@ import java.util.List;
 
 import ants2d.geometry.Point;
 import ants2d.geometry.Rectangle;
-import ants2d.mapobject.MapObject;
+import ants2d.mapobject.MapPoint;
 import ants2d.treenode.TreeNode;
 
 public abstract class AbstractMapPart implements MapPart {
@@ -45,7 +45,7 @@ public abstract class AbstractMapPart implements MapPart {
 		return rect.contains(p);
 	}
 
-	public List<MapObject> getNearbyObjects(Point p, double radius) {
+	public List<MapPoint> getNearbyObjects(Point p, double radius) {
 		if (rect.containsCircle(p, radius) || isRoot()) {
 			return getOwnNearbyObjects(p, radius);
 		} else {
@@ -54,7 +54,7 @@ public abstract class AbstractMapPart implements MapPart {
 
 	}
 	
-	public List<MapObject> getNearbyObjects(Rectangle r) {
+	public List<MapPoint> getNearbyObjects(Rectangle r) {
 		if (rect.overlaps(r) || isRoot()) {
 			return getOwnNearbyObjects(r);
 		} else {
@@ -63,10 +63,10 @@ public abstract class AbstractMapPart implements MapPart {
 
 	}
 
-	public abstract List<MapObject> getOwnNearbyObjects(Point p, double radius);
+	public abstract List<MapPoint> getOwnNearbyObjects(Point p, double radius);
 
 	@Override
-	public void add(MapObject x) {
+	public void add(MapPoint x) {
 		findMap(x.getCoords()).add(x);
 	}
 	
