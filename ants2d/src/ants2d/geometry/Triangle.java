@@ -23,9 +23,7 @@ public class Triangle implements Polygonic,ConvexShape{
 	public List<Point> points(){
 		return Arrays.asList(a,b,c);
 	}
-/*	public Polygon asPolygon() {
-		return new Polygon(points());
-	}*/
+
 	@Override
 	public boolean contains(XY point) {
 		Point x = new Point(point);
@@ -35,13 +33,6 @@ public class Triangle implements Polygonic,ConvexShape{
 		LineEquation l = new LineEquation(ref1,ref2);
 		return l.f(x) * l.f(y) > 0;
 	}
-	/*@Override
-	public Rectangle containingRectangle() {
-		return this.asPolygon().containingRectangle();
-	}*/
-/*	@Override
-	public Circle containingCircle() { 
-		return this.asPolygon().containingCircle(); //sometimes Circumcircle is better
-	}*/
+
 
 }
