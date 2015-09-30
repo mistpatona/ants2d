@@ -66,9 +66,9 @@ public class MapObjectBag extends AbstractMapPart {
 			doSplit();
 	}
 
-	public MapBag doSplit() { // replace ObjectBag with MapBag having 4
+	public MapBag doSplit() { // replace ObjectBag with MapBag having 2
 								// ObjectBag's in it
-		List<Rectangle> nr = rect.split4();
+		List<Rectangle> nr = rect.split2();
 		MapBag ans = new MapBag(rect, treePlace);
 		treePlace.setOwner(ans);
 		for (Rectangle r : nr) {

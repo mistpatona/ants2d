@@ -50,7 +50,8 @@ public class Rectangle extends AB implements RectShape, Polygonic {
 	}
 
 	public static Rectangle enclosing(Iterable<Point> ps) {
-		Double minx = Double.MAX_VALUE, miny = Double.MAX_VALUE, maxx = -Double.MAX_VALUE, maxy = -Double.MAX_VALUE;
+		Double minx = Double.MAX_VALUE, miny = Double.MAX_VALUE;
+		Double maxx = -Double.MAX_VALUE, maxy = -Double.MAX_VALUE;
 		int c = 0;
 		for (Point p : ps) {
 			minx = Math.min(minx, p.getX());
@@ -72,7 +73,7 @@ public class Rectangle extends AB implements RectShape, Polygonic {
 	public static Rectangle enclosing(Rectangle r, double e) {
 		return Rectangle.enclosing(r, new Offset(e, e));
 	}
-
+	@Deprecated //too complex . better use two split2's
 	public List<Rectangle> split4() {
 		List<Rectangle> ans = new ArrayList<Rectangle>();
 		Point p = p0.sum(dimentions().scaleBy(0.5)); // center point
@@ -97,6 +98,12 @@ public class Rectangle extends AB implements RectShape, Polygonic {
 	public List<Rectangle> split2v() { // like in Norton Commander
 		return split2(new Offset(dimentions().scaleBy(0.5).getX(), 0));
 	}
+	
+	public List<Rectangle> split2() { // on longer dimention
+		Offset t = this.dimentions();
+		return (t.getX() > t.getY()) ? this.split2h() : this.split2v();  
+	}
+	
 
 	@Override
 	public boolean contains(XY point) {
@@ -117,9 +124,9 @@ public class Rectangle extends AB implements RectShape, Polygonic {
 		Point p1 = getP1();
 		switch (q) {
 		case NW:
-			return p0.create(p0); // to protect from accidental change
+			return p0;
 		case SE:
-			return p0.create(p1);
+			return p1;
 		case SW:
 			return p0.create(p0.getX(), p1.getY());
 		case NE:
@@ -187,4 +194,15 @@ public class Rectangle extends AB implements RectShape, Polygonic {
 		Offset d = this.dimentions();
 		return d.getX() * d.getY();
 	}
+
+	@Override
+	public Rectangle containingRectangle() {
+		return this;
+	}
+	
+	public Circle containingCircle() {
+		return new Circle(this.centrum(), this.dimentions().length()/2.0);
+	}
+	
+
 }

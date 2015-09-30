@@ -2,6 +2,7 @@ package ants2d.geometry.test;
 import org.junit.Test;
 
 import ants2d.geometry.LineEquation;
+import ants2d.geometry.Offset;
 import ants2d.geometry.Point;
 
 import static org.junit.Assert.*;
@@ -26,7 +27,7 @@ public class LineEquationTest {
 	public void checkAlignement() {
 		Point p0 = new Point(1,1);
 		Point p1 = new Point(2,7);
-		Point d = new Point(p1.sub(p0));
+		Offset d = p1.sub(p0);
 		Point mid = new Point(p0.sum(d.scaleBy(0.5)));
 		Point _p0 = new Point(p0.sub(d));
 		Point _p1 = new Point(p1.sum(d));
@@ -57,6 +58,19 @@ public class LineEquationTest {
 		assertEquals("koef A",line.getA(),other.getA(),eps);
 		assertEquals("koef B",line.getB(),other.getB(),eps);
 		assertEquals("koef C",line.getC(),other.getC(),eps);
+	}
+	
+	@Test
+	public void testIntersection(){
+		Point x = new Point(13,14);
+		Point a = new Point(3,10);
+		Point b = new Point(12,2);
+		LineEquation l1 = new LineEquation(a,x);
+		LineEquation l2 = new LineEquation(b,x);
+		Point y = l1.intersectionPoint(l2);
+		double d = a.distanceTo(b);
+		double dxy = x.distanceTo(y);
+		assertTrue(overhelmsByAbs(d,dxy));
 	}
 	
 	public boolean overhelmsByAbs(double big, double small) {

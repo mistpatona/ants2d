@@ -74,6 +74,17 @@ public class LineEquation {
 	public boolean overhelmsByAbs(double big, double small, double eps) {
 		return Math.abs(big) * eps > Math.abs(small);
 	}
+	
+	public Point intersectionPoint(LineEquation oth) {
+		double d = //a1b2-a2b1
+				this.getA()*oth.getB() - oth.getA()*this.getB();
+		//if (d==0) throw exception
+		double x = // (1/d)*(b1c2-b2c1)
+				(this.getB()*oth.getC()-oth.getB()*this.getC())/d;
+		double y = // (-1/d)*(a1c2-a2c1)
+				-(this.getA()*oth.getC()-oth.getA()*this.getC())/d;
+		return new Point(x,y);
+	}
 
 	public double getA() {
 		return a;

@@ -24,7 +24,7 @@ public class MapTest {
 		m.trySplit(2);
 		double a2 = area(m.findMap(p).getRectangle());
 		checkNearbyObjectsCount(m);
-		assertEquals(a1, a2 * 4, 0.01);
+		assertEquals(a1, a2 * 2, 0.01);
 	}
 	@Test
 	public void mapDepthAndCount() {
@@ -39,7 +39,7 @@ public class MapTest {
 		assertEquals(3,d2);
 		assertNotEquals(c1,c2);
 		assertEquals(2,c1);
-		assertEquals(6,c2);
+		assertEquals(4,c2);
 	}
 	public MapPart prepareMap()
 	{

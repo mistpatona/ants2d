@@ -44,17 +44,15 @@ public class PointTest {
 		Offset a3 = new Offset(3,30);
 		myAssertEquals(a1,a3.sub(a2));
 		myAssertEquals(a2,a3.sub(a1));
-		XY sub32 = a3.sub(a2);
-		assertTrue(sub32.isOffs());
 	}
 	
 	@Test
 	public void subPPTest(){  // abs minus abs gives offset
 		Point p1 = new Point(5,5);
 		Point p2 = new Point(2,2);
-		XY r = p1.sub(p2);
-		assertTrue(r.isOffs());
-		assertFalse(r.isAbs());
+		Offset r = p1.sub(p2);
+//		assertTrue(r.isOffs());
+//		assertFalse(r.isAbs());
 	}
 
 }

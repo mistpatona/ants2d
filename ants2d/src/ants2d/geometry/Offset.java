@@ -14,26 +14,26 @@ public class Offset extends XY {
 	public Offset create(double x, double y) {
 		return new Offset(x, y);
 	}
-
+	/*
 	@Override
 	public Offset create(final XY that) {
 		return new Offset(that);
-	}
+	}*/
 
-	public boolean isAbs() {
+/*	public boolean isAbs() {
 		return false;
 	}
 
 	public boolean isOffs() {
 		return true;
-	}
+	}*/
 
 	public Offset sum(Offset other) {
 		return new Offset(super.sum(other));
 	}
 
 	public Offset scaleBy(double k) {
-		return create(super.scaleBy(k));
+		return new Offset(getX()*k,getY()*k);//create(super.scaleBy(k));
 	}
 	
 	public double cartesianProduct(Offset other) {

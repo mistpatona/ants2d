@@ -42,13 +42,13 @@ public class Point extends XY {
 		return ( (count & 1) == 1 ); // odd count means point is inside
 	}
 	
-	@Override
+/*	@Override
 	public Point create(final XY that){
 		return new Point(that);
-	}
+	}*/
 	
-	public boolean isAbs() { return true; }
-	public boolean isOffs() { return false; }
+/*	public boolean isAbs() { return true; }
+	public boolean isOffs() { return false; }*/
 	
 	public Offset sub(Point other) {
 		return new Offset(super.sub(other));
@@ -59,8 +59,8 @@ public class Point extends XY {
 	public Point sub(Offset other) {
 		return new Point(super.sub(other));
 	}
-	public Point scaleBy(double k) {
+/*	public Point scaleBy(double k) {
 		return create(super.scaleBy(k));
-	}
+	}*/
 	
 }

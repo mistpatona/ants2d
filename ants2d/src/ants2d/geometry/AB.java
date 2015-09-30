@@ -21,5 +21,10 @@ public class AB {
 	public Point centrum() {
 		return p0.sum(p1.sub(p0).scaleBy(0.5));
 	}
+	
+	public double outerRadius() {
+		return getP1().sub(getP0()).length() * 0.5;
+	}
+	
 
 }

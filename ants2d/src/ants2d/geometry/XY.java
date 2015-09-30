@@ -22,9 +22,9 @@ public abstract class XY {
 		return "@" + x + ":" + y;
 	}
 	
-	public abstract XY create(final double x, final double y);
+    public abstract XY create(final double x, final double y);
 
-	public abstract XY create(final XY that);
+	/* public abstract XY create(final XY that);*/
 
 	public XY sum(XY b) {
 		return create(getX() + b.getX(), getY() + b.getY());
@@ -46,13 +46,13 @@ public abstract class XY {
 		return Math.hypot(getX(), getY());
 	}
 
-	public abstract boolean isAbs();
+/*	public abstract boolean isAbs();
 
 	public abstract boolean isOffs();
 	
 	public XY scaleBy(double k) {
 		return create(getX()*k,getY()*k);
-	}
+	}*/
 	
 	public double scalarProduct(XY other) {
 		return this.getX()*other.getX() + this.getY()*other.getY(); 

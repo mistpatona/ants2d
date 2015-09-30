@@ -57,4 +57,16 @@ public class Polygon implements Polygonic {
 		Segment s = new Segment(p,out);
 		return ( (this.intersectionsWith(s) & 1) == 1 ); // odd count means point is inside
 	}
+	@Override
+	public boolean contains(XY point) {
+		return containsPoint(new Point(point));
+	}
+	@Override
+	public Rectangle containingRectangle() {
+		return Rectangle.enclosing(points());
+	}
+	@Override
+	public Circle containingCircle() {
+		return containingRectangle().containingCircle() ; // some bit primitive
+	}
 }
