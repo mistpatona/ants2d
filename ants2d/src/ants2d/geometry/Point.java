@@ -15,7 +15,7 @@ public class Point extends XY implements ConvexShape  {
 		return new Point(x,y);
 	}
 	
-	/*
+	/**
 	 * @deprecated use Polygon.outsidePoint() instead  {@link #new()} 
 	 * */
 	@Deprecated
@@ -24,7 +24,7 @@ public class Point extends XY implements ConvexShape  {
 		Double margin = encl.dimentions().length() /10.0;
 		return Rectangle.enclosing(encl, margin).getP0();
 	}
-	/*
+	/**
 	 * @deprecated use Polygon.containsPoint(p) instead
 	 * */
 	@Deprecated
