@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ants2d.map.Quadrants;
+import ants2d.mapabstractions.ShapeOverlap;
 
 public class Rectangle extends AB implements RectShape, Polygonic {
 
@@ -152,6 +153,12 @@ public class Rectangle extends AB implements RectShape, Polygonic {
 	public boolean overlaps(Rectangle other) {
 		return contains(other) || belongsTo(other) || partlyOverlaps(other);
 	}
+	
+	public ShapeOverlap overlap(Rectangle other) {
+		if (contains(other) || belongsTo(other)) return ShapeOverlap.Fully;
+		if (partlyOverlaps(other)) return ShapeOverlap.ProbableOrPartly;
+		return ShapeOverlap.None;
+	}
 
 	public boolean partlyOverlaps(Rectangle other) {
 		/*
@@ -165,6 +172,8 @@ public class Rectangle extends AB implements RectShape, Polygonic {
 					return true;
 		return false;
 	}
+	
+	
 
 	/* --! segments in clock-wise order */
 	public List<Segment> segments() {
