@@ -2,10 +2,11 @@ package ants2d.ants;
 
 import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Clock;
+import ants2d.mapabstractions.Constants;
 import ants2d.mapabstractions.MapPayload;
 
 public class FerromoneMark implements MapPayload,ChangesWithTime {
-	private float strength  = 100;
+	private double strength  = Constants.FerroMarkInitialStrength;
 	
 	public FerromoneMark() {
 		Clock.getClock().add(this);
@@ -15,13 +16,13 @@ public class FerromoneMark implements MapPayload,ChangesWithTime {
 		return strength;
 	}
 	public void timeStep() {
-		strength *= 0.75;
+		strength *= Constants.FerroMarkFadeMutiplier;
 	}
 	public boolean wantsToBeRemoved(){
 		return isOver();
 	}
 	public boolean isOver() {
-		return strength<0.01;
+		return strength<Constants.FerroMarkFadeAway;
 	}
 	public String toString(){
 		return "Ferromone="+strength;

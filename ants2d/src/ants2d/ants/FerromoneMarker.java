@@ -4,9 +4,10 @@ import ants2d.geometry.Point;
 import ants2d.mapabsrtactions.impl.MapShapeObject;
 import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Clock;
+import ants2d.mapabstractions.Constants;
 
 public class FerromoneMarker implements ChangesWithTime {
-	public static double markerStep = 0.05;
+	public static double markerStep = Constants.FerroMarkerStep;
 	private Point previousMarkPosition;
 	private OrdinaryAnt ant;
 	public FerromoneMarker(OrdinaryAnt a) {
