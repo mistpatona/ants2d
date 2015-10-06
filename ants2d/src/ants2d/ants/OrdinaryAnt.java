@@ -1,9 +1,13 @@
 package ants2d.ants;
 
+import java.util.List;
+
 import ants2d.geometry.Offset;
 import ants2d.geometry.Point;
 import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Constants;
+import ants2d.mapabstractions.MapObject;
+import ants2d.mapabstractions.MapObstacle;
 import ants2d.mapabstractions.UserMapPart;
 
 public class OrdinaryAnt implements ChangesWithTime {
@@ -23,7 +27,11 @@ public class OrdinaryAnt implements ChangesWithTime {
 		// TODO Auto-generated method stub
 		direction = task.newDirection();
 		task = task.nextTask();
-		position = position.sum(direction);
+		Point pos = position.sum(direction);
+		if (isPointAvailable(pos)) { position = pos;
+		}
+		else {direction = direction.scaleBy(-1.0); // turn around 
+		}
 	}
 	public Point getPosition() {
 		return position;
@@ -39,6 +47,14 @@ public class OrdinaryAnt implements ChangesWithTime {
 	}
 	public UserMapPart getCurrentMap() {
 		return currentMap;
+	}
+	public boolean isPointAvailable(Point p) {
+		List<MapObject> lst0 = currentMap.getObjects(p);
+		for (MapObject x : lst0) {
+			if ((x.payload() instanceof MapObstacle)
+					|| x.containsPoint(p)  ) return false;
+		}
+		return true;
 	}
 	
 
