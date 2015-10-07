@@ -17,10 +17,16 @@ import ants2d.ants.OrdinaryAnt;
 import ants2d.geometry.Offset;
 import ants2d.geometry.Point;
 import ants2d.geometry.Rectangle;
+import ants2d.geometry.Shape;
+import ants2d.mapabsrtactions.impl.MapObstacleObject;
 import ants2d.mapabsrtactions.impl.MapObstacleRectangleObject;
+import ants2d.mapabsrtactions.impl.MapPointObject;
 import ants2d.mapabstractions.Clock;
 import ants2d.mapabstractions.MapObject;
 import ants2d.mapabstractions.MapObstacle;
+import ants2d.mapabstractions.MapPayload;
+import ants2d.mapabstractions.MapQuery;
+import ants2d.mapabstractions.MapQueryFilter;
 
 public class ArenaView1 extends JPanel implements ActionListener {
 
@@ -59,15 +65,45 @@ public class ArenaView1 extends JPanel implements ActionListener {
 		System.out.println("ArenaView: ants:"+antscount);*/
 		doDummyDrawing(g);
 		drawRects(g);
+		drawPoints(g);
 		drawAnts(g);
 	}
 	
 	private void drawRects(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-		List<MapObject> lst0 = arenaModel.getMapObjects(window);
+		MapQueryFilter q = new MapQueryFilter() {
+			public Shape lookupArea() {
+				return window;
+			}
+			public Class<? extends MapObject> mapObjectNeeded() {
+				return MapObstacleRectangleObject.class; //as general as possible
+			}
+			public Class<? extends MapPayload> payloadNeeded() {
+				return MapPayload.class; // as general as possible
+			}
+		};
+		List<MapObject> lst0 = arenaModel.getMapObjects(q);
 		for (MapObject x : lst0) 
 			//if (x.payload() instanceof MapObstacleRectangleObject)
 					(new RectangleView(x.enclosingRectangle(),viewTrans,Color.BLUE)).paint(g2d);
+	}
+	
+	private void drawPoints(Graphics g){
+		Graphics2D g2d = (Graphics2D) g;
+		MapQueryFilter q = new MapQueryFilter() {
+			public Shape lookupArea() {
+				return window;
+			}
+			public Class<? extends MapObject> mapObjectNeeded() {
+				return MapPointObject.class; 
+			}
+			public Class<? extends MapPayload> payloadNeeded() {
+				return MapPayload.class; // as general as possible
+			}
+		};
+		List<MapObject> lst0 = arenaModel.getMapObjects(q);
+		for (MapObject x : lst0) 
+					(new PointView(x.centrum(),viewTrans,Color.RED)).paint(g2d);
 	}
 	
 	private void drawAnts(Graphics g){

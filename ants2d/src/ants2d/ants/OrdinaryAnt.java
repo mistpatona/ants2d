@@ -4,10 +4,15 @@ import java.util.List;
 
 import ants2d.geometry.Offset;
 import ants2d.geometry.Point;
+import ants2d.geometry.Shape;
+import ants2d.mapabsrtactions.impl.MapObstacleObject;
+import ants2d.mapabsrtactions.impl.MapShapeObject;
 import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Constants;
 import ants2d.mapabstractions.MapObject;
 import ants2d.mapabstractions.MapObstacle;
+import ants2d.mapabstractions.MapPayload;
+import ants2d.mapabstractions.MapQuery;
 import ants2d.mapabstractions.UserMapPart;
 
 public class OrdinaryAnt implements ChangesWithTime {
@@ -59,14 +64,35 @@ public class OrdinaryAnt implements ChangesWithTime {
 	public FerromoneSensorAnswer senseFerromone() {
 		return ferromoneSensor.sense();
 	}
-	public boolean isPointAvailable(Point p) {
+/*	public boolean isPointAvailableOld(Point p) {
 		List<MapObject> lst0 = currentMap.getObjects(p);
 		for (MapObject x : lst0) {
 			if ((x.payload() instanceof MapObstacle)
 					|| x.containsPoint(p)  ) return false;
 		}
 		return true;
+	}*/
+	public boolean isPointAvailable(Point p) {
+		MapQuery qq = new MapQuery() {
+			public Shape lookupArea() {
+				return p;
+			}
+			public Class<? extends MapObject> mapObjectNeeded() {
+				return MapShapeObject.class; // was MapObstacleObject
+			}
+
+			public Class<? extends MapPayload> payloadNeeded() {
+				return MapObstacle.class;
+			}
+			
+			public int lookupLimit() {
+				return 1;
+			}
+		};
+		return currentMap.getObjects(qq).isEmpty();
+		
 	}
+	
 	
 
 }

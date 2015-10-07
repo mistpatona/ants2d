@@ -5,21 +5,9 @@ import java.util.Collection;
 import java.util.List;
 
 import ants2d.geometry.Rectangle;
-import ants2d.geometry.Shape;
 
-public interface MapQuery {
-	Shape lookupArea(); // can be point which means "what do I belong to?"
-	default boolean easyCheck(MapObject x) {
-		return true; //easy one, to be done *before* other checks
-	}
-	Class<? extends MapObject> mapObjectNeeded();
-	Class<? extends MapPayload> payloadNeeded();
-	default boolean hardCheck(MapObject x) {
-		return true; //to be done *after* all other checks
-	}
-	default int lookupLimit() { return 0; } // 0 means unlimited
-	
-	default List<MapObject> filter(Collection<MapObject> input) {
+public interface MapQueryFilter extends MapQuery {
+/*	default List<MapObject> filter(Collection<MapObject> input) {
 		MapQuery query = this;
 		List<MapObject> ans = new ArrayList<MapObject>();
 		Rectangle r = query.lookupArea().containingRectangle();
@@ -37,5 +25,6 @@ public interface MapQuery {
 				   } 
 		}
 		return ans;
-	}
+	}*/
+
 }

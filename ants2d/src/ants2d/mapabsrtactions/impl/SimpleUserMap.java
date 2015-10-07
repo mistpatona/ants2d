@@ -9,6 +9,7 @@ import ants2d.geometry.Shape;
 import ants2d.mapabstractions.MapObject;
 import ants2d.mapabstractions.MapPayload;
 import ants2d.mapabstractions.MapQuery;
+import ants2d.mapabstractions.MapQueryFilter;
 import ants2d.mapabstractions.ShapeOverlap;
 import ants2d.mapabstractions.UserMapPart;
 
@@ -30,34 +31,40 @@ public class SimpleUserMap implements UserMapPart {
 		return this;
 	}
 
-	@Override
+/*	@Override
 	public List<MapObject> getObjects(Shape s) {
 		return getObjects(s.containingRectangle());
 	}
 	
-/** some extra objects can slip in */	
+*//** some extra objects can slip in *//*	
 	public List<MapObject> getObjects(Rectangle r) {
 		List<MapObject> ans = new ArrayList<MapObject>();
 		for(MapObject x : objs) 
 			if (x.overlapWith(r) != ShapeOverlap.None) ans.add(x);
 		return ans; // more testing will be needed on caller side
-	}	
-	public List<MapObject> getObjects(MapQuery query) {
+	} */	
+	public List<MapObject> getObjects(MapQuery qf) {
+		return qf.filter(objs);
+	}
+
+/*	public List<MapObject> getObjects(MapQuery query) {
 		List<MapObject> ans = new ArrayList<MapObject>();
 		Rectangle r = query.lookupArea().containingRectangle();
 		int count = query.lookupLimit();
 		if (count<=0) count = Integer.MAX_VALUE;
 		for(MapObject x : objs){
-			if ( 	query.payloadNeeded().isInstance(x.payload()) &&
+			if ( 	query.easyCheck(x) &&
+					query.payloadNeeded().isInstance(x.payload()) &&
 					query.mapObjectNeeded().isInstance(x)  &&  
-				    (x.overlapWith(r) != ShapeOverlap.None)
+				    (x.overlapWith(r) != ShapeOverlap.None) &&
+				    query.hardCheck(x)
 				)
 				   { ans.add(x); 
 				     if (--count <= 0) return ans;   
 				   } 
 		}
 		return ans;
-	}
+	}*/
 
 	@Override
 	public void add(MapObject newObject) {

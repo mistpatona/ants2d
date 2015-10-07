@@ -10,6 +10,7 @@ import ants2d.mapabsrtactions.impl.SimpleUserMap;
 import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Clock;
 import ants2d.mapabstractions.MapObject;
+import ants2d.mapabstractions.MapQuery;
 import ants2d.mapabstractions.UserMapPart;
 
 /**
@@ -54,8 +55,8 @@ public class ArenaModel {
 	 * wrapper around map
 	 * @param s - shape
 	 */
-	public List<MapObject> getMapObjects(Shape s){
-		return map.getObjects(s);
+	public List<MapObject> getMapObjects(MapQuery q){
+		return map.getObjects(q);
 	}
 	public List<OrdinaryAnt> getAnts(Shape s){
 		return ants;

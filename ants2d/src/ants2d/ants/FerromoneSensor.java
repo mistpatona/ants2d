@@ -13,6 +13,7 @@ import ants2d.mapabstractions.Constants;
 import ants2d.mapabstractions.MapObject;
 import ants2d.mapabstractions.MapPayload;
 import ants2d.mapabstractions.MapQuery;
+import ants2d.mapabstractions.MapQueryFilter;
 
 public class FerromoneSensor {
 	public Polygon getSensorShape(OrdinaryAnt ant) {
@@ -24,17 +25,17 @@ public class FerromoneSensor {
 		return new Polygon(Arrays.asList(p0,p0.sum(vl),p0.sum(v),p0.sum(vr)));
 	}
 	
-	public List<MapObject> availablePointsOld(OrdinaryAnt ant) {
+/*	public List<MapObject> availablePointsOld(OrdinaryAnt ant) {
 		Polygon p = getSensorShape(ant);
 		List<MapObject> ans = new ArrayList<MapObject>();
 		for (MapObject x : ant.getCurrentMap().getObjects(p)) 
 			if (x.payload() instanceof FerromoneMark && p.containsPoint(x.centrum())) 
 				ans.add(x);
 		return ans;
-	}
+	}*/
 	public List<MapObject> availablePoints(OrdinaryAnt ant) {
 		Polygon p = getSensorShape(ant);
-		MapQuery qq = new MapQuery() {
+		MapQueryFilter qq = new MapQueryFilter() {
 			public java.lang.Class<? extends MapObject> mapObjectNeeded() {
 				return MapPointObject.class;
 			}
@@ -60,7 +61,7 @@ public class FerromoneSensor {
 			FerromoneMark thismark = (FerromoneMark)x.payload();
 			double scent = thismark.getStrength()*(l>1.0?l:1/l);
 			double product = ant.getDirection().cartesianProduct(dx);// ~~ sin(alpha)
-			if (product >0) {right +=scent;}
+			if (product >0) {right += scent;}
 			else {left += scent;}
 		}
 		return new FerromoneSensorAnswer(left,right);

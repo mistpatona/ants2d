@@ -40,9 +40,9 @@ public class ArenaBuilder {
 		Point pit0 = new Point(100,100);
 		Offset pitSize = new Offset(600,500);
 		OrdinaryAnt ant = new MarkerAnt(pit0.sum(randomOffset(pitSize)));
-		ant.setTask(new WanderingTask(ant));
+/*		ant.setTask(new WanderingTask(ant));
 		ans.addAnt(ant);
-		ant.setDirection(ant.getDirection().scaleBy(2));
+		ant.setDirection(ant.getDirection().scaleBy(2));*/
 		
 		
 		
@@ -56,7 +56,7 @@ public class ArenaBuilder {
 			ant.setTask(new WalkFollowingFerromoneTask(ant));
 			ans.addAnt(ant);
 			}
-			for(int i=0;i<3;i++)
+			for(int i=0;i<1;i++)
 			{
 				ant = new MarkerAnt(pit0.sum(randomOffset(pitSize)));
 			ant.setTask(new LimitedAntTask( new WalkFollowingFerromoneTask(ant),rnd.nextInt(100),
