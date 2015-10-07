@@ -34,11 +34,6 @@ public class MapEnvelope implements UserMapPart {
 		return innerMap.getSpecificMap(s);
 	}
 
-/*	@Override
-	public List<MapObject> getObjects(Shape s) {
-		return innerMap.getObjects(s);
-	}*/
-
 	@Override
 	public void add(MapObject newObject) {
 		innerMap.add(newObject);
