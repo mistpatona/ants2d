@@ -45,20 +45,17 @@ public class SimpleUserMap implements UserMapPart {
 	public List<MapObject> getObjects(MapQuery query) {
 		List<MapObject> ans = new ArrayList<MapObject>();
 		Rectangle r = query.lookupArea().containingRectangle();
-		//Class<? extends MapPayload> cla = query.payloadNeeded();
-		//Class<? extends Shape> sha = query.shapeNeeded();
 		int count = query.lookupLimit();
 		if (count<=0) count = Integer.MAX_VALUE;
 		for(MapObject x : objs){
 			if ( 	query.payloadNeeded().isInstance(x.payload()) &&
-					query.shapeNeeded().isInstance(x)  &&  
+					query.mapObjectNeeded().isInstance(x)  &&  
 				    (x.overlapWith(r) != ShapeOverlap.None)
 				)
 				   { ans.add(x); 
 				     if (--count <= 0) return ans;   
 				   } 
 		}
-		//if (c>0) System.out.println("count:"+c);
 		return ans;
 	}
 

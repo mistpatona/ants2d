@@ -35,7 +35,7 @@ public class FerromoneSensor {
 	public List<MapObject> availablePoints(OrdinaryAnt ant) {
 		Polygon p = getSensorShape(ant);
 		MapQuery qq = new MapQuery() {
-			public java.lang.Class<? extends MapObject> shapeNeeded() {//TODO:rename method
+			public java.lang.Class<? extends MapObject> mapObjectNeeded() {//TODO:rename method
 				return MapPointObject.class;
 			}
 
