@@ -2,7 +2,6 @@ package ants2d.ants;
 
 import ants2d.geometry.Point;
 import ants2d.mapabsrtactions.impl.MapPointObject;
-import ants2d.mapabsrtactions.impl.MapShapeObject;
 import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Clock;
 import ants2d.mapabstractions.Constants;

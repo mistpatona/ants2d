@@ -35,7 +35,7 @@ public class FerromoneSensor {
 	public List<MapObject> availablePoints(OrdinaryAnt ant) {
 		Polygon p = getSensorShape(ant);
 		MapQuery qq = new MapQuery() {
-			public java.lang.Class<? extends MapObject> mapObjectNeeded() {//TODO:rename method
+			public java.lang.Class<? extends MapObject> mapObjectNeeded() {
 				return MapPointObject.class;
 			}
 
@@ -58,7 +58,7 @@ public class FerromoneSensor {
 			Offset dx = x.centrum().sub(p0);
 			double l = dx.length();
 			FerromoneMark thismark = (FerromoneMark)x.payload();
-			double scent = thismark.getStrength()*(l>1.0?1:1/l);
+			double scent = thismark.getStrength()*(l>1.0?l:1/l);
 			double product = ant.getDirection().cartesianProduct(dx);// ~~ sin(alpha)
 			if (product >0) {right +=scent;}
 			else {left += scent;}

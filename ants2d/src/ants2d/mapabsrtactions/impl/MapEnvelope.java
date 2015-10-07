@@ -25,13 +25,13 @@ public class MapEnvelope implements UserMapPart {
 	private UserMapPart innerMap;
 	@Override
 	public UserMapPart getSpecificMap(Point p) {
-		return this; //TODO: don't know now
+		return innerMap.getSpecificMap(p); //TODO: don't know now
 	}
 
 	@Override
 	public UserMapPart getSpecificMap(Shape s) {
-		// TODO Auto-generated method stub
-		return this;
+		// TODO also don't know
+		return innerMap.getSpecificMap(s);
 	}
 
 	@Override
