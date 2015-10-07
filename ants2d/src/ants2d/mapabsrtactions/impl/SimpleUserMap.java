@@ -7,6 +7,8 @@ import ants2d.geometry.Point;
 import ants2d.geometry.Rectangle;
 import ants2d.geometry.Shape;
 import ants2d.mapabstractions.MapObject;
+import ants2d.mapabstractions.MapPayload;
+import ants2d.mapabstractions.MapQuery;
 import ants2d.mapabstractions.ShapeOverlap;
 import ants2d.mapabstractions.UserMapPart;
 
@@ -40,6 +42,31 @@ public class SimpleUserMap implements UserMapPart {
 			if (x.overlapWith(r) != ShapeOverlap.None) ans.add(x);
 		return ans; // more testing will be needed on caller side
 	}	
+	public List<MapObject> getObjects(MapQuery query) {
+		/*if (query.lookupArea().getClass().isInstance(Point.class)) {
+			
+		}else */return getObjectsInShape(query);
+		
+	}
+	private List<MapObject> getObjectsInShape(MapQuery query) {
+		List<MapObject> ans = new ArrayList<MapObject>();
+		Rectangle r = query.lookupArea().containingRectangle();
+		//Class<? extends MapPayload> cla = query.payloadNeeded();
+		//Class<? extends Shape> sha = query.shapeNeeded();
+		int count = query.lookupLimit();
+		if (count<=0) count = Integer.MAX_VALUE;
+		for(MapObject x : objs){
+			if ( 	query.payloadNeeded().isInstance(x.payload()) &&
+					query.shapeNeeded().isInstance(x)  &&  
+				    (x.overlapWith(r) != ShapeOverlap.None)
+				)
+				   { ans.add(x); 
+				     if (--count <= 0) return ans;   
+				   } 
+		}
+		//if (c>0) System.out.println("count:"+c);
+		return ans;
+	}
 
 	@Override
 	public void add(MapObject newObject) {
@@ -48,7 +75,7 @@ public class SimpleUserMap implements UserMapPart {
 
 	@Override
 	public void removeAllWanting() {
-		for(MapObject x : objs) 
+		for(MapObject x : new ArrayList<MapObject>(objs)) 
 			if (x.wantsToBeRemoved()) objs.remove(x);
 	}
 

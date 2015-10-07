@@ -39,4 +39,10 @@ public class Offset extends XY {
 	public double cartesianProduct(Offset other) {
 		return this.getX()*other.getY() - this.getY()*other.getX();
 	}
+	
+	public Offset rotateBy(double alpha) {
+		double angle = this.polarAngle() + alpha;
+		double l = this.length();
+		return this.create(l*Math.cos(angle),l*Math.sin(angle));
+	}
 }

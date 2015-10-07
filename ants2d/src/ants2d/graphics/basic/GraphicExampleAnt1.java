@@ -4,20 +4,27 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import ants2d.ants.OrdinaryAnt;
+import ants2d.ants.view.OrdinaryAntViewSimple;
+import ants2d.geometry.Point;
+import ants2d.mapabsrtactions.impl.SimpleUserMap;
+import ants2d.mapabstractions.Clock;
+import ants2d.mapabstractions.UserMapPart;
+
 @SuppressWarnings("serial")
-public class GraphicExample  extends JFrame {
+public class GraphicExampleAnt1  extends JFrame {
 
-	    public GraphicExample() {
 
+	    public GraphicExampleAnt1() {
 	        initUI();
 	    }
 
 	    private void initUI() {
-
-	        add(new Surface());
-
-	        setTitle("Simple Java 2D example");
-	        setSize(500, 400);
+	        
+	        add(new SurfaceN());
+	        
+	        setTitle("Java 2D Ants");
+	        setSize(750, 650);
 	        setLocationRelativeTo(null);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    }
@@ -25,10 +32,9 @@ public class GraphicExample  extends JFrame {
 	    public static void main(String[] args) {
 
 	        EventQueue.invokeLater(new Runnable() {
-
 	            @Override
 	            public void run() {
-	            	GraphicExample ex = new GraphicExample();
+	            	GraphicExampleAnt1 ex = new GraphicExampleAnt1();
 	                ex.setVisible(true);
 	            }
 	        });

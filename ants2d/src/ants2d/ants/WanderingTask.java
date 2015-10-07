@@ -9,7 +9,6 @@ public class WanderingTask implements TrivialAntTask {
 	
 	public WanderingTask(OrdinaryAnt a) {
 		ant = a;
-		
 	}
 	
 	@Override
@@ -24,9 +23,7 @@ public class WanderingTask implements TrivialAntTask {
 	public Offset changedDirection() {
 		double step = (rnd.nextDouble()-0.5)*rnd.nextDouble();
 		Offset dir = ant.getDirection();
-		double angle = dir.polarAngle() + step;
-		double l = dir.length();
-		return dir.create(l*Math.cos(angle),l*Math.sin(angle));
+		return dir.rotateBy(step);
 	}
 
 }

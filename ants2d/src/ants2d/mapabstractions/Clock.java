@@ -1,5 +1,6 @@
 package ants2d.mapabstractions;
 
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 
 public class Clock {
@@ -16,7 +17,7 @@ public class Clock {
 	
 	public static void tick() {
 		Clock clock = Clock.getClock();
-		 for(Object x : clock.getClients().keySet()) {
+		 for(Object x : (new ArrayList<Object>(clock.getClients().keySet()))) {
 			((ChangesWithTime)x).timeStep();
 			if (((ChangesWithTime)x).isOver()) clock.remove((ChangesWithTime)x);
 		}

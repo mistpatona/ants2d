@@ -1,13 +1,11 @@
 package ants2d.ants;
 import ants2d.geometry.Offset;
 
-public class WalkInCircleTask implements TrivialAntTask {
+public class WalkFollowingFerromoneTask implements TrivialAntTask {
 	private OrdinaryAnt ant;
-	private double step;
 	
-	public WalkInCircleTask(OrdinaryAnt a, double stepAngle) {
+	public WalkFollowingFerromoneTask(OrdinaryAnt a) {
 		ant = a;
-		step = stepAngle;
 	}
 	
 	@Override
@@ -17,7 +15,8 @@ public class WalkInCircleTask implements TrivialAntTask {
 	/** turn speed vector on "step" angle*/
 	@Override
 	public Offset newDirection() {
-		return ant.getDirection().rotateBy(step);
+		double alpha = ant.senseFerromone().angle();
+		return ant.getDirection().rotateBy(alpha);
 	}
 
 }

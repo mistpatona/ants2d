@@ -11,17 +11,22 @@ import ants2d.mapabstractions.MapObstacle;
 import ants2d.mapabstractions.UserMapPart;
 
 public class OrdinaryAnt implements ChangesWithTime {
-	public OrdinaryAnt(UserMapPart map,Point pos) {
-		currentMap = map;
+	public OrdinaryAnt(Point pos) {
 		position = pos;
-		direction = new Offset(0,Constants.AntSpeed);
+		direction = new Offset(0,Constants.AntSpeed).rotateBy(Math.random()*Math.PI*2);
 		task = new WalkInCircleTask(this,0.01);
+		ferromoneSensor = new MobileFerromoneSensor(this);
+	}
+	public OrdinaryAnt(UserMapPart map,Point pos) {
+		this(pos);
+		currentMap = map;
 	}
 	
 	private Point position;
 	private Offset direction;//speed vector
 	private UserMapPart currentMap;
 	private TrivialAntTask task;
+	private MobileFerromoneSensor ferromoneSensor;
 	@Override
 	public void timeStep() {
 		// TODO Auto-generated method stub
@@ -45,8 +50,14 @@ public class OrdinaryAnt implements ChangesWithTime {
 	public void setTask(TrivialAntTask t) {
 		task = t;
 	}
+	public void setMap(UserMapPart currentMap) {
+		this.currentMap = currentMap;
+	}
 	public UserMapPart getCurrentMap() {
 		return currentMap;
+	}
+	public FerromoneSensorAnswer senseFerromone() {
+		return ferromoneSensor.sense();
 	}
 	public boolean isPointAvailable(Point p) {
 		List<MapObject> lst0 = currentMap.getObjects(p);
