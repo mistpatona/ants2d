@@ -43,12 +43,6 @@ public class SimpleUserMap implements UserMapPart {
 		return ans; // more testing will be needed on caller side
 	}	
 	public List<MapObject> getObjects(MapQuery query) {
-		/*if (query.lookupArea().getClass().isInstance(Point.class)) {
-			
-		}else */return getObjectsInShape(query);
-		
-	}
-	private List<MapObject> getObjectsInShape(MapQuery query) {
 		List<MapObject> ans = new ArrayList<MapObject>();
 		Rectangle r = query.lookupArea().containingRectangle();
 		//Class<? extends MapPayload> cla = query.payloadNeeded();
