@@ -13,6 +13,6 @@ public class Constants {
 	public static final int FerroMarkerStepCount = 5;
 	
 	public static final double FerroMarkInitialStrength = 100;
-	public static final double FerroMarkFadeMutiplier = 0.99;	
-	public static final double FerroMarkFadeAway = 0.01;
+	public static final double FerroMarkFadeMutiplier = 0.995;//0.99;	
+	public static final double FerroMarkFadeAway = 1;//0.01
 }

@@ -1,14 +1,19 @@
 package ants2d.mapabstractions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.WeakHashMap;
 
 public class Clock {
-	private WeakHashMap<ChangesWithTime,Integer> clients;
+	private Map<ChangesWithTime,Integer> clients;
 	private static Clock singleton;
 	
 	public static Clock getClock() {
-		if (singleton == null) singleton = new Clock();
+		if (singleton == null)
+		synchronized(Clock.class) {
+			if (singleton == null) singleton = new Clock();
+		}
 		return singleton;
 	}
 	private Clock() {
@@ -17,20 +22,24 @@ public class Clock {
 	
 	public static void tick() {
 		Clock clock = Clock.getClock();
-		 for(Object x : (new ArrayList<Object>(clock.getClients().keySet()))) {
-			((ChangesWithTime)x).timeStep();
-			if (((ChangesWithTime)x).isOver()) clock.remove((ChangesWithTime)x);
+		 for(ChangesWithTime x : new ArrayList<ChangesWithTime>(clock.getClients().keySet())) {
+			x.timeStep();
+			if (x.isOver()) clock.remove(x);
 		}
 	}
 
-	private WeakHashMap<ChangesWithTime,Integer> getClients() {
+	private /*WeakHash*/Map<ChangesWithTime,Integer> getClients() {
 		return clients;
 	}
-	public void remove(ChangesWithTime x) {
+	public synchronized void remove(ChangesWithTime x) {
 		clients.remove(x);
 	}
-	public void add(ChangesWithTime x) {
+	public synchronized void add(ChangesWithTime x) {
 		clients.put(x, 1);
+	}
+	
+	public static int size() {
+		return Clock.getClock().getClients().size();
 	}
 
 }

@@ -23,17 +23,29 @@ public class ArenaModel {
 	public ArenaModel() {
 		map = new MapEnvelope(new SimpleUserMap());
 		ants = new ArrayList<OrdinaryAnt>();
-		System.out.println("Arena model inited");
-		Clock.getClock().add(new ChangesWithTime() {
-			@Override
+		//System.out.println("Arena model inited");
+		cleanupHolder = 
+		 new ChangesWithTime() {
 			public void timeStep() {
-				if (Math.random() < 0.05) 
+				float x = (float)Math.random();
+				if (x < 0.05) {
 					map.removeAllWanting();
+					lastCleanup=0;
+				}
+				else {lastCleanup++;}
 			}
-		});
+		 };
+		Clock.getClock().add(cleanupHolder);
 	}
-	private List<OrdinaryAnt> ants;
-	private UserMapPart map;
+	private final List<OrdinaryAnt> ants;
+	private final UserMapPart map;
+	private Integer lastCleanup = 0;
+	private ChangesWithTime cleanupHolder;  //otherwise, the cleaner will be GC'ed
+	                                        // from weak collection
+
+	public int lastCleanup() {
+		return lastCleanup;
+	}
 	
 	public void addAnt(OrdinaryAnt ant) {
 		ants.add(ant);

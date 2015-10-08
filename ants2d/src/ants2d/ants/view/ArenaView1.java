@@ -21,6 +21,8 @@ import ants2d.geometry.Shape;
 import ants2d.mapabsrtactions.impl.MapObstacleObject;
 import ants2d.mapabsrtactions.impl.MapObstacleRectangleObject;
 import ants2d.mapabsrtactions.impl.MapPointObject;
+import ants2d.mapabsrtactions.impl.MapQueryConstructor;
+import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Clock;
 import ants2d.mapabstractions.MapObject;
 import ants2d.mapabstractions.MapObstacle;
@@ -34,6 +36,7 @@ public class ArenaView1 extends JPanel implements ActionListener {
 		System.out.println("Arena view inited");
 		arenaModel = am;
 		initTimer();
+		initLapTimer();
 	}
 	private ArenaModel arenaModel;
 	private ViewPointTranfsormer viewTrans = new ViewPointTranfsormer(); //has reasonable defaults
@@ -42,6 +45,10 @@ public class ArenaView1 extends JPanel implements ActionListener {
 	private final int DELAY = 50;
 	private Timer timer;
 	
+	//System.currentTimeMillis()
+	private long lastLapTimer;
+	private long lastLap;
+	private ChangesWithTime lapTimerHolder;
     public Timer getTimer() {
         return timer;
     }
@@ -49,6 +56,21 @@ public class ArenaView1 extends JPanel implements ActionListener {
     private void initTimer() {
         timer = new Timer(DELAY, this);
         timer.start();
+    }
+    
+    private void initLapTimer(){
+    	lastLapTimer=System.currentTimeMillis();
+    	lastLap=-1;
+		lapTimerHolder = 
+				 new ChangesWithTime() {
+					public void timeStep() {
+					long newTime = System.currentTimeMillis();
+					lastLap=newTime - lastLapTimer;
+					if (lastLap <0 ) lastLap=0;
+					lastLapTimer=newTime;
+					}
+				 };
+				Clock.getClock().add(lapTimerHolder);
     }
 	
 	@Override
@@ -71,35 +93,26 @@ public class ArenaView1 extends JPanel implements ActionListener {
 	
 	private void drawRects(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-		MapQueryFilter q = new MapQueryFilter() {
+		MapQuery q = new MapQuery() {
 			public Shape lookupArea() {
 				return window;
-			}
-			public Class<? extends MapObject> mapObjectNeeded() {
-				return MapObstacleRectangleObject.class; //as general as possible
-			}
-			public Class<? extends MapPayload> payloadNeeded() {
-				return MapPayload.class; // as general as possible
 			}
 		};
 		List<MapObject> lst0 = arenaModel.getMapObjects(q);
 		for (MapObject x : lst0) 
-			//if (x.payload() instanceof MapObstacleRectangleObject)
 					(new RectangleView(x.enclosingRectangle(),viewTrans,Color.BLUE)).paint(g2d);
 	}
 	
 	private void drawPoints(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-		MapQueryFilter q = new MapQueryFilter() {
+		MapQuery q = new MapQuery() {
 			public Shape lookupArea() {
 				return window;
 			}
 			public Class<? extends MapObject> mapObjectNeeded() {
 				return MapPointObject.class; 
 			}
-			public Class<? extends MapPayload> payloadNeeded() {
-				return MapPayload.class; // as general as possible
-			}
+
 		};
 		List<MapObject> lst0 = arenaModel.getMapObjects(q);
 		for (MapObject x : lst0) 
@@ -118,7 +131,10 @@ public class ArenaView1 extends JPanel implements ActionListener {
 	private void doDummyDrawing(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawString("Arena 2D", 20, 20);
+		//g2d.drawString("Points:" + arenaModel.getMapObjects(MapQueryConstructor.shape(window)).size(), 220, 20);
+		//g2d.drawString("Clock clients:" + Clock.size(), 220, 40);
+		//g2d.drawString("steps after cleanup:" + arenaModel.lastCleanup(), 20, 20);
+		g2d.drawString("Last lap, ms:" + lastLap, 20, 40);
 
 		// draw cross
 		g2d.setColor(new Color(210, 210, 10));
