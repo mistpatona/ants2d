@@ -21,7 +21,7 @@ public class SimpleUserMap implements UserMapPart {
 	
 	List<MapObject> objs = new ArrayList<MapObject>();
 
-	@Override
+/*	@Override
 	public UserMapPart getSpecificMap(Point p) {
 		return this;
 	}
@@ -29,7 +29,7 @@ public class SimpleUserMap implements UserMapPart {
 	@Override
 	public UserMapPart getSpecificMap(Shape s) {
 		return this;
-	}
+	}*/
 
 	public List<MapObject> getObjects(MapQuery qf) {
 		return qf.filter(objs);

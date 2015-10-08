@@ -23,7 +23,7 @@ public class MapEnvelope implements UserMapPart {
 	}
 
 	private UserMapPart innerMap;
-	@Override
+/*	@Override
 	public UserMapPart getSpecificMap(Point p) {
 		return innerMap.getSpecificMap(p); //TODO: don't know now
 	}
@@ -33,7 +33,7 @@ public class MapEnvelope implements UserMapPart {
 		// TODO also don't know
 		return innerMap.getSpecificMap(s);
 	}
-
+*/
 	@Override
 	public void add(MapObject newObject) {
 		innerMap.add(newObject);
