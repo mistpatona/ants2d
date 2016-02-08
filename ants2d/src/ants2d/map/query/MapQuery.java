@@ -1,4 +1,4 @@
-package ants2d.mapabstractions;
+package ants2d.map.query;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,8 +6,11 @@ import java.util.List;
 
 import ants2d.geometry.Rectangle;
 import ants2d.geometry.Shape;
+import ants2d.mapabstractions.MapObject;
+import ants2d.mapabstractions.MapPayload;
+import ants2d.mapabstractions.ShapeOverlap;
 
-public interface MapQuery {
+public interface MapQuery extends DumbMapQuery {
 	Shape lookupArea(); // can be point which means "what do I belong to?"
 	default boolean easyCheck(MapObject x) {
 		return true; //easy one, to be done *before* other checks
@@ -23,6 +26,10 @@ public interface MapQuery {
 	}
 	default int lookupLimit() { return 0; } // 0 means unlimited
 	
+	/* (non-Javadoc)
+	 * @see ants2d.map.query.DumbMapQuery#test(ants2d.mapabstractions.MapObject)
+	 */
+	@Override
 	default boolean test(MapObject x) {
 		MapQuery query = this;
 		Rectangle r = query.lookupArea().containingRectangle();
@@ -45,5 +52,14 @@ public interface MapQuery {
 		}
 		return ans;
 	}
+	
+	default boolean hasCommonWith(MapQuery other) {
+		return this.lookupArea().containingRectangle().overlap(
+				other.lookupArea().containingRectangle()
+				) != ShapeOverlap.None ;
+	/*	TODO: test also query classes: Map and Payload
+	 * if they can theoretically have some common result 
+	 */
+	};
 
 }

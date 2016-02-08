@@ -5,6 +5,7 @@ import java.util.List;
 
 import ants2d.geometry.Point;
 import ants2d.geometry.Shape;
+import ants2d.map.query.MapQuery;
 
 public interface UserMapPart {
 	//UserMapPart getSpecificMap(Point p);

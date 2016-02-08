@@ -8,11 +8,11 @@ import ants2d.geometry.Offset;
 import ants2d.geometry.Point;
 import ants2d.geometry.Polygon;
 import ants2d.geometry.Shape;
+import ants2d.map.query.MapQuery;
 import ants2d.mapabsrtactions.impl.MapPointObject;
 import ants2d.mapabstractions.Constants;
 import ants2d.mapabstractions.MapObject;
 import ants2d.mapabstractions.MapPayload;
-import ants2d.mapabstractions.MapQuery;
 import ants2d.mapabstractions.MapQueryFilter;
 
 public class FerromoneSensor {

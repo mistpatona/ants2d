@@ -6,7 +6,7 @@ import ants2d.mapabstractions.Constants;
 import ants2d.mapabstractions.MapPayload;
 
 public class FerromoneMark implements MapPayload,ChangesWithTime {
-	private double strength  = Constants.FerroMarkInitialStrength;
+	private double strength  = Constants.FerroMarkInitialStrength*(Math.exp(5*Math.random()-2)+0.3);
 	
 	public FerromoneMark() {
 		Clock.getClock().add(this);

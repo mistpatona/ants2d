@@ -1,14 +1,15 @@
 package ants2d.mapabsrtactions.impl;
 
 import ants2d.geometry.Shape;
+import ants2d.map.query.DumbMapQuery;
+import ants2d.map.query.MapQuery;
 import ants2d.mapabstractions.MapObject;
-import ants2d.mapabstractions.MapQuery;
 
 public class MapQueryConstructor {
 /*	public static MapQuery empty(){
 		return new MapQuery() {};
 	}*/
-	public static MapQuery shape(Shape s){
+	public static DumbMapQuery shape(Shape s){
 		return new MapQuery() {
 			public Shape lookupArea() {
 				return s;

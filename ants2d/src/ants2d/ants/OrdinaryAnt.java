@@ -5,6 +5,7 @@ import java.util.List;
 import ants2d.geometry.Offset;
 import ants2d.geometry.Point;
 import ants2d.geometry.Shape;
+import ants2d.map.query.MapQuery;
 import ants2d.mapabsrtactions.impl.MapObstacleObject;
 import ants2d.mapabsrtactions.impl.MapShapeObject;
 import ants2d.mapabstractions.ChangesWithTime;
@@ -12,7 +13,6 @@ import ants2d.mapabstractions.Constants;
 import ants2d.mapabstractions.MapObject;
 import ants2d.mapabstractions.MapObstacle;
 import ants2d.mapabstractions.MapPayload;
-import ants2d.mapabstractions.MapQuery;
 import ants2d.mapabstractions.UserMapPart;
 
 public class OrdinaryAnt implements ChangesWithTime {

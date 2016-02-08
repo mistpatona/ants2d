@@ -5,12 +5,12 @@ import java.util.List;
 
 import ants2d.geometry.Point;
 import ants2d.geometry.Shape;
+import ants2d.map.query.MapQuery;
 import ants2d.mapabsrtactions.impl.MapEnvelope;
 import ants2d.mapabsrtactions.impl.SimpleUserMap;
 import ants2d.mapabstractions.ChangesWithTime;
 import ants2d.mapabstractions.Clock;
 import ants2d.mapabstractions.MapObject;
-import ants2d.mapabstractions.MapQuery;
 import ants2d.mapabstractions.UserMapPart;
 
 /**

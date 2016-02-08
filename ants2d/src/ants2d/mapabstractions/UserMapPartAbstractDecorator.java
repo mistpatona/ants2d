@@ -2,6 +2,8 @@ package ants2d.mapabstractions;
 
 import java.util.List;
 
+import ants2d.map.query.MapQuery;
+
 public abstract class UserMapPartAbstractDecorator implements UserMapPart {
 	
 	public UserMapPartAbstractDecorator(UserMapPart m) {
@@ -9,6 +11,10 @@ public abstract class UserMapPartAbstractDecorator implements UserMapPart {
 	}
 	
 	private UserMapPart innerMap;
+	protected UserMapPart innerMap()
+	{
+		return innerMap;
+	}
 
 	@Override
 	public void add(MapObject newObject) {

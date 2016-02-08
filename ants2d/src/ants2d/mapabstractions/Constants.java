@@ -5,7 +5,7 @@ public class Constants {
 	public static final double AntSpeed=1; 
 	/** how far to look for sensed ferromone points*/
 	public static final double FerroSenseRadius = AntSpeed * 15;
-	public static final double FerroSensorForwardLook = 3;
+	public static final double FerroSensorForwardLook = 2;
 	/** angle in radians */
 	public static final double FerroSensorSideAngle = 45 * Math.PI / 180.0;
 	/** in what distance to lay next marker*/
